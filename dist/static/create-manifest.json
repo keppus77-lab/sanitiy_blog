@@ -1,0 +1,20 @@
+{
+  "createdAt": "2026-07-11T21:03:45.541Z",
+  "studioVersion": "4.10.3",
+  "version": 3,
+  "workspaces": [
+    {
+      "basePath": "/studio",
+      "dataset": "production",
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><rect width=\"32\" height=\"32\" rx=\"2\" fill=\"#024950\"></rect><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" alignment-baseline=\"middle\" fill=\"hsla(185, 95%, 56%, 1)\" class=\"sc-bccCnR iBlUfd\">NB</text></svg>",
+      "mediaLibrary": {
+        "enabled": false
+      },
+      "name": "default",
+      "projectId": "igd110j3",
+      "schema": "998718cb.create-schema.json",
+      "title": "Next.js Blog with Sanity.io",
+      "tools": "cc7cc0c9.create-tools.json"
+    }
+  ]
+}
