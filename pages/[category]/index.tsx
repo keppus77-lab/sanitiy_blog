@@ -1,89 +1,84 @@
-import { client } from '../../lib/sanity.client'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
-import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
+import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { getCategoryPage } from '../../lib/sanity.queries'
+import  MoreStories  from '../../components/MoreStories'
 
-async function getCategoryPosts(categorySlug: string) {
-    return client.fetch(
-    `{
-      "category": *[_type == "category" && slug.current == $categorySlug][0] {
-        title,
-        description,
-        "slug": slug.current
+const PAGE_SIZE = 10
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const categorySlug = ctx.params?.category as string | undefined
+  if (!categorySlug) return { notFound: true }
+
+  const pageRaw = Array.isArray(ctx.query.page) ? ctx.query.page[0] : ctx.query.page
+  const page = Math.max(1, parseInt(pageRaw || '1', 10) || 1)
+
+  const data = await getCategoryPage(categorySlug, page, PAGE_SIZE)
+  if (!data?.category) return { notFound: true }
+
+  const totalPages = Math.max(1, Math.ceil((data.total || 0) / PAGE_SIZE))
+
+  // wenn page zu groß -> 404 oder redirect auf letzte Seite
+  if (page > totalPages) {
+    return {
+      redirect: {
+        destination: `/${categorySlug}?page=${totalPages}`,
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: {
+      category: data.category,
+      posts: data.posts ?? [],
+      total: data.total ?? 0,
+      page,
+      totalPages,
+      categorySlug,
     },
-      "posts": *[_type == "post" && category->slug.current == $categorySlug] | order(date desc) {
-        _id,
-        title,
-        "slug": slug.current,
-        excerpt,
-        date,
-        coverImage
-        }
-    }`,
-        { categorySlug }
-    )
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-    const categories = await client.fetch<{ slug: string }[]>(
-    `*[_type == "category" && defined(slug.current)] { "slug": slug.current }`
-    )
-
-    return {
-    paths: categories.map((c) => ({ params: { category: c.slug } })),
-    fallback: 'blocking',
-    }
-}
-
-export const getStaticProps: GetStaticProps<{
-    category: any
-    posts: any[]
-    categorySlug: string
-}> = async (context) => {
-    const categorySlug = context.params?.category as string | undefined
-    if (!categorySlug) return { notFound: true }
-
-    const data = await getCategoryPosts(categorySlug)
-    if (!data?.category) return { notFound: true }
-
-    return {
-        props: {
-            category: data.category,
-            posts: data.posts ?? [],
-            categorySlug,
-        },
-        revalidate: 60,
-    }
+  }
 }
 
 export default function CategoryPage(
-    props: InferGetStaticPropsType<typeof getStaticProps>
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
-    // Fetch category data and its posts
-const { category, posts, categorySlug } = props
+  const { category, posts, page, totalPages, categorySlug } = props
 
+  return (
+    <div className="mx-auto max-w-4xl px-4 py-10">
+      <header className="mb-8">
+        <h1 className="text-3xl font-semibold"></h1>
+        {category.description && (
+          <p className="mt-2 text-zinc-600">{category.description}</p>
+        )}
+      </header>
 
+      
+         
+         <MoreStories posts={posts} title={category.title} description={ category.description } />
+       
+      
 
-    
-    if (!category) {
-        notFound()
-    }
-
-    return (
-    <div>
-        <h1>{category.title}</h1>
-        {category.description && <p>{category.description}</p>}
-        <div className="posts-grid">
-        {posts.map((post) => (
-        <Link 
-          key={post._id} 
-          href={`/${categorySlug}/${post.slug}`}
+      {/* Pager */}
+      <nav className="mt-10 flex items-center justify-between">
+        <Link
+          className={`rounded-md border px-3 py-2 text-sm ${page <= 1 ? 'pointer-events-none opacity-50' : ''}`}
+          href={`/${categorySlug}?page=${page - 1}`}
         >
-          <h2>{post.title}</h2>
-          <p>{post.excerpt}</p>
+          Zurück
         </Link>
-        ))}
-        </div>
+
+        <span className="text-sm text-zinc-600">
+          Seite {page} von {totalPages}
+        </span>
+
+        <Link
+          className={`rounded-md border px-3 py-2 text-sm ${page >= totalPages ? 'pointer-events-none opacity-50' : ''}`}
+          href={`/${categorySlug}?page=${page + 1}`}
+        >
+          Weiter
+        </Link>
+      </nav>
     </div>
-    ) 
+  )
 }

@@ -65,10 +65,38 @@ export interface Settings {
     title?: string
   }
 }
-
   export const categoriesQuery = groq`
     *[_type == "category"] | order(title asc) {
       title,
       slug: slug.current
     }
   `;
+
+  // lib/sanity.category.ts (oder wo du Queries sammelst)
+import { client } from './sanity.client'
+
+export async function getCategoryPage(categorySlug: string, page: number, pageSize: number) {
+  const start = (page - 1) * pageSize
+  const end = start + pageSize
+
+  return client.fetch(
+    `{
+      "category": *[_type == "category" && slug.current == $categorySlug][0]{
+        title,
+        description,
+        "slug": slug.current
+      },
+      "total": count(*[_type == "post" && category->slug.current == $categorySlug]),
+      "posts": *[_type == "post" && category->slug.current == $categorySlug]
+        | order(date desc)[$start...$end]{
+          _id,
+          title,
+          "slug": slug.current,
+          excerpt,
+          date,
+          coverImage
+        }
+    }`,
+    { categorySlug, start, end }
+  )
+}
