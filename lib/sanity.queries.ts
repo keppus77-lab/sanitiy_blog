@@ -7,9 +7,10 @@ const postFields = groq`
   _updatedAt,
   excerpt,
   coverImage,
+  subtitle,
   "slug": slug.current,
   "author": author->{name, picture},
-  "caregory": category->{title, "slug": slug.current} 
+  "category": category->{title, "slug": slug.current} 
 `
 
 export const settingsQuery = groq`*[_type == "settings"][0]`
@@ -52,10 +53,18 @@ export interface Post {
   coverImage?: any
   date?: string
   _updatedAt?: string
+  category: {
+    title?: string
+    slug?: string
+  },
   excerpt?: string
   author?: Author
   slug?: string
   content?: any
+  emoji?: string
+  subtitle?: string
+
+
 }
 
 export interface Settings {

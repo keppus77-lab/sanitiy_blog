@@ -4,10 +4,15 @@ import Layout from 'components/BlogLayout'
 import HeroPost from 'components/HeroPost'
 import IndexPageHead from 'components/IndexPageHead'
 import MoreStories from 'components/MoreStories'
+import BlogHeaderNavi from 'components/BlogHeaderNavi'
 
 import * as demo from 'lib/demo.data'
 import type { Post, Settings } from 'lib/sanity.queries'
 import { Suspense } from 'react'
+import AuroraHero from './AuroraHero'
+import WaldarbeitBlog from './test'
+import PostHero from './PostHero'
+import HomepageHero from './HomerpageHero'
 
 export interface IndexPageProps {
   preview?: boolean
@@ -21,26 +26,36 @@ export default function IndexPage(props: IndexPageProps) {
   const [heroPost, ...morePosts] = posts || []
   const { title = demo.title, description = demo.description } = settings || {}
 
+console.log(heroPost);
+
   return (
     <>
       <IndexPageHead settings={settings} />
-
+      <BlogHeaderNavi />
       <Layout preview={preview} loading={loading}>
         <Container>
-          <BlogHeader title={title} description={description} level={1} />
+          <BlogHeader title={title} description={description} level={4} />
+
           {heroPost && (
-            <HeroPost
+            <HomepageHero
+            description={description}
               title={heroPost.title}
               coverImage={heroPost.coverImage}
               date={heroPost.date}
               author={heroPost.author}
+              subtitle={heroPost.subtitle}
               slug={heroPost.slug}
               excerpt={heroPost.excerpt}
+              category={heroPost.category}
+              emoji={heroPost.emoji || '🚜'}
             />
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
- 
+      
+      <PostHero />
+      <WaldarbeitBlog />
+      <AuroraHero />
       </Layout>
     </>
   )

@@ -10,6 +10,7 @@ import SectionSeparator from 'components/SectionSeparator'
 import * as demo from 'lib/demo.data'
 import type { Post, Settings } from 'lib/sanity.queries'
 import Error from 'next/error'
+import CommentSection from './CommentSection'
 
 export interface PostPageProps {
   preview?: boolean
@@ -51,6 +52,8 @@ export default function PostPage(props: PostPageProps) {
                 />
                 <PostBody content={post.content} />
               </article>
+               {/* Kommentare */}
+      <CommentSection postId={post._id} />
               <SectionSeparator />
               {morePosts?.length > 0 && <MoreStories posts={morePosts} title="Weitere Beiträge" />}
             </>

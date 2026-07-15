@@ -4,6 +4,8 @@ import post from './post'
 import author from './author'
 //import gallery from './gallery'
 
+import user from './user'
+import comment from './comment'
 
 
 export const schemaTypes = [
@@ -11,5 +13,7 @@ export const schemaTypes = [
   author,
   blockContent,
   post,    
+  user, 
+  comment,
   //gallery
 ]
