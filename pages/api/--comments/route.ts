@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../auth/[...nextauth]/route'
-import { client } from '@/lib/sanity.client'
+import { authOptions } from '../auth/[...nextauth]'
+import { client } from '../../../lib/sanity.client'
 
 // GET - Kommentare abrufen
 export async function GET(request: NextRequest) {

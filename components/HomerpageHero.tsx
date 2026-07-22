@@ -16,7 +16,7 @@ console.log('HomepageHero props:', props);
         {/* Hero Slider Section */}
         <section className="relative overflow-hidden">
             {/* Main Hero Container */}
-            <div className={`relative bg-gradient-to-r from-teal-700 via-cyan-600 to-teal-800 transition-all duration-700`}>
+            <div className={`relative bg-gradient-to-r from-green-800 via-green-700 to-emerald-800 transition-all duration-700`}>
             {/* Animated Background Patterns */}
             <div className="absolute inset-0 opacity-20">
                 <div className="absolute top-20 left-20 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>

@@ -10,7 +10,11 @@ const postFields = groq`
   subtitle,
   "slug": slug.current,
   "author": author->{name, picture},
-  "category": category->{title, "slug": slug.current} 
+  "category": category->{title, "slug": slug.current},
+  "categories": categories[]->{
+    title,
+    "slug": slug.current
+  }
 `
 
 export const settingsQuery = groq`*[_type == "settings"][0]`
@@ -57,10 +61,11 @@ export interface Post {
     title?: string
     slug?: string
   },
+  tags?: any,
   excerpt?: string
   author?: Author
   slug?: string
-  content?: any
+  content?: string
   emoji?: string
   subtitle?: string
 
@@ -96,16 +101,61 @@ export async function getCategoryPage(categorySlug: string, page: number, pageSi
         "slug": slug.current
       },
       "total": count(*[_type == "post" && category->slug.current == $categorySlug]),
-      "posts": *[_type == "post" && category->slug.current == $categorySlug]
+      "posts": *[_type == "post" && (category->slug.current == $categorySlug
+      || $categorySlug in categories[]->slug.current
+      )]
         | order(date desc)[$start...$end]{
           _id,
           title,
           "slug": slug.current,
           excerpt,
           date,
-          coverImage
+          coverImage,
+          "category": category->{
+             title,
+            "slug": slug.current
+            },
+            "tags": tags[]->{
+              title,
+              "slug": slug.current
+            }
         }
     }`,
     { categorySlug, start, end }
+  )
+}
+
+export async function getTagPage(tagSlug: string, page: number, pageSize: number) {
+  const start = (page - 1) * pageSize
+  const end = start + pageSize
+
+  return client.fetch(
+    `{
+      "tag": *[_type == "tags" && slug.current == $tagSlug][0]{
+      _id,
+      title,
+      "slug": slug.current,
+      description
+    },
+    "posts": *[_type == "post" && $tagSlug in tags[]->slug.current]
+      | order(date desc) [${start}...${end}] {
+        _id,
+        title,
+        "slug": slug.current,
+        excerpt,
+        date,
+        coverImage,
+        "category": category->{
+          title,
+          "slug": slug.current
+        },
+        "tags": tags[]->{
+          title,
+          "slug": slug.current
+        }
+      },
+    "total": count(*[_type == "post" && $tagSlug in tags[]->slug.current])
+    }`,
+    { tagSlug, start, end }
   )
 }

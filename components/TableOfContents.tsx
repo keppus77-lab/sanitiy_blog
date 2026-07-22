@@ -12,12 +12,12 @@ interface TableOfContentsProps {
   className?: string
 }
 
-export function TableOfContents({ content, className = '' }: TableOfContentsProps) {
+export default function TableOfContents({ content, className = '' }: TableOfContentsProps) {
   const [toc, setToc] = useState<TocItem[]>([])
 
   useEffect(() => {
     // Alle H2 und H3 Überschriften finden
-    const headings = document.querySelectorAll('article h2, article h3')
+    const headings = document.querySelectorAll('#content h2, #content h3')
     
     const tocItems: TocItem[] = Array.from(headings).map((heading, index) => {
       // ID generieren wenn keine vorhanden

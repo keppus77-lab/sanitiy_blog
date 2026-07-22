@@ -11,6 +11,9 @@ import * as demo from 'lib/demo.data'
 import type { Post, Settings } from 'lib/sanity.queries'
 import Error from 'next/error'
 import CommentSection from './CommentSection'
+import Breadcrumb from './Breadcrumb'
+import { BlogArticle } from './BlogArticle'
+import BlogDetail from '../components/BlogDetail'
 
 export interface PostPageProps {
   preview?: boolean
@@ -37,28 +40,22 @@ export default function PostPage(props: PostPageProps) {
       <PostPageHead settings={settings} post={post} />
 
       <Layout preview={preview} loading={loading}>
-        <Container>
-          <BlogHeader title={title} level={2} />
+        
+          
           {preview && !post ? (
             <PostTitle>Loading…</PostTitle>
           ) : (
             <>
-              <article>
-                <PostHeader
-                  title={post.title}
-                  coverImage={post.coverImage}
-                  date={post.date}
-                  author={post.author}
-                />
-                <PostBody content={post.content} />
-              </article>
+            
+              <BlogDetail postData={post} />
+              
                {/* Kommentare */}
-      <CommentSection postId={post._id} />
-              <SectionSeparator />
+      {/*<CommentSection postId={post._id} />
+              <SectionSeparator />*/}
               {morePosts?.length > 0 && <MoreStories posts={morePosts} title="Weitere Beiträge" />}
             </>
           )}
-        </Container>
+        
       </Layout>
     </>
   )

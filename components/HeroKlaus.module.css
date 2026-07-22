@@ -1,0 +1,74 @@
+/* HeroKlaus.module.css */
+
+.parallax {
+    grid-template-areas: "stack";
+}
+
+.parallax > * {
+    grid-area: stack;
+    animation: parallax linear;
+    animation-timeline: scroll();
+}
+
+.parallax > img {
+    width: 100%;
+}
+
+.hero,
+.parallax-bg,
+.parallax-beam,
+.parallax-bauml,
+.parallax-baumr,
+.parallax-klaus {
+    --parallax-speed: 10;
+}
+
+.parallax-bg {
+    --parallax-speed: 0;
+}
+
+.parallax-beam {
+    --parallax-speed: -10;
+}
+
+.parallax-bauml,
+.parallax-baumr {
+    --parallax-speed: 20;
+}
+
+.parallax-klaus {
+    --parallax-speed: 10;
+}
+
+.parallax-foreground-back {
+    transform: scaleY(1.2);
+    transform-origin: bottom;
+    mix-blend-mode: hard-light;
+}
+
+@keyframes parallax {
+    to {
+        transform: translateY(calc(var(--parallax-speed) * 200px));
+    }
+}
+
+.hero img {
+    display: block;
+    max-width: 100%;
+}
+
+.hero {
+    margin-block-start: max(20vh, 8rem);
+}
+
+.heroTitle::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: black;
+    z-index: -1;
+    scale: 2;
+    opacity: 0.5;
+    filter: blur(5rem);
+    translate: -50%;
+}

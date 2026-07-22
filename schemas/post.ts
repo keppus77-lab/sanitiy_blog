@@ -14,7 +14,7 @@ export default defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
-        defineField({
+     defineField({
       name: 'subtitle',
       title: 'Untertitel',
       type: 'string',
@@ -45,10 +45,21 @@ export default defineType({
       },
       fields: [
         {
+          name: 'caption',
+          title: 'Bildunterschrift',
+          type: 'string'
+        },
+        {
+          name: 'imageAuthor',
+          title: 'Fotograf',
+          type: 'string'
+        },       
+        {
           name: 'alt',
           title: 'Alt Text',
           type: 'string'
         }
+
       ]
     }),
     defineField({
@@ -98,13 +109,13 @@ export default defineType({
       to: [{ type: 'category' }]
     }),
     defineField({
-      name: 'categories',
-      title: 'Kategorien',
+      name: 'tags',
+      title: 'Tags #',
       type: 'array',
       of: [
         {
           type: 'reference',
-          to: [{ type: 'category' }]
+          to: [{ type: 'tags' }]
         }
       ] 
     })

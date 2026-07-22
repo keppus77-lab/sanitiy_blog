@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getCategoryPage } from '../../lib/sanity.queries'
-import  MoreStories  from '../../components/MoreStories'
-import CategoryPager from '../../components/CategoryPager'
+import { getCategoryPage } from '../../../lib/sanity.queries'
+import  MoreStories  from '../../../components/MoreStories'
+import CategoryPager from '../../../components/CategoryPager'
 
 const PAGE_SIZE = 10
 
@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     if (page > totalPages) {
         return {
             redirect: {
-                destination: `/${categorySlug}?page=${totalPages}`,
+                destination: `blog/${categorySlug}?page=${totalPages}`,
                 permanent: false,
             },
         }
@@ -35,7 +35,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         total: data.total ?? 0,
         page,
         totalPages,
-        categorySlug,
+        categorySlug
+        
         },
     }
 }
@@ -43,25 +44,21 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 export default function CategoryPage(
     props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
+    
     const { category, posts, page, totalPages, categorySlug } = props
 
     return (
-        <div className="mx-auto max-w-4xl px-4 py-10">
-        <header className="mb-8">
-            <h1 className="text-3xl font-semibold"></h1>
-            {category.description && (
-            <p className="mt-2 text-zinc-600">{category.description}</p>
-            )}
-        </header>
+        <>
+      
 
         
             
-            <MoreStories posts={posts} title={category.title} description='description'  />
+            <MoreStories posts={posts} title={category.title}   />
         
         
 
         {/* Pager */}
         <CategoryPager actpage={page} totalPages={totalPages} categorySlug={categorySlug} />
-        </div>
+      </>
     )
 }

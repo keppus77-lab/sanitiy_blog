@@ -13,6 +13,7 @@ import AuroraHero from './AuroraHero'
 import WaldarbeitBlog from './test'
 import PostHero from './PostHero'
 import HomepageHero from './HomerpageHero'
+import HeroKlaus from './HeroKlaus'
 
 export interface IndexPageProps {
   preview?: boolean
@@ -26,14 +27,14 @@ export default function IndexPage(props: IndexPageProps) {
   const [heroPost, ...morePosts] = posts || []
   const { title = demo.title, description = demo.description } = settings || {}
 
-console.log(heroPost);
+
 
   return (
     <>
       <IndexPageHead settings={settings} />
-      <BlogHeaderNavi />
+      
       <Layout preview={preview} loading={loading}>
-        <Container>
+         <HeroKlaus  title={title} description={description} />
           <BlogHeader title={title} description={description} level={4} />
 
           {heroPost && (
@@ -51,9 +52,8 @@ console.log(heroPost);
             />
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
+        
       
-      <PostHero />
       <WaldarbeitBlog />
       <AuroraHero />
       </Layout>
