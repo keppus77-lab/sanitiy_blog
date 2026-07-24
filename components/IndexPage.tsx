@@ -34,7 +34,7 @@ export default function IndexPage(props: IndexPageProps) {
       <IndexPageHead settings={settings} />
       
       <Layout preview={preview} loading={loading}>
-         <HeroKlaus  title={title} description={description} />
+          <HeroKlaus  title={title} description={description} />
           <BlogHeader title={title} description={description} level={4} />
 
           {heroPost && (
