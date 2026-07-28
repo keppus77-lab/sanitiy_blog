@@ -32,13 +32,13 @@
 
 .hero-title {
     
-    --parallax-speed: -100;
+    --parallax-speed: 50;
     font-size: clamp(3rem, 12vw, 8rem);
 }
 
 .hero-subtitle{
- --parallax-speed: -150;
-font-size: clamp(2rem, 5vw, 4rem);
+ --parallax-speed: 50;
+font-size: clamp(2rem, 5vw, 3rem);
 }
 
 .parallax-l1 {

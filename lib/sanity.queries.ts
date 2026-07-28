@@ -159,3 +159,20 @@ export async function getTagPage(tagSlug: string, page: number, pageSize: number
     { tagSlug, start, end }
   )
 }
+
+export async function headerLinks() {
+  return await client.fetch(`
+  *[_type == "navigationLink" && showInHeader == true] | order(headerOrder asc) {
+    title,
+    linkType,
+    "url": select(
+      linkType == "category" => "/blog/" + categoryLink->slug.current,
+      linkType == "post" => "/blog/" + postLink->category->slug.current + "/" + postLink->slug.current,
+      linkType == "page" => "/" + pageLink->slug.current,
+      linkType == "external" => externalUrl,
+      ""
+    ),
+    openInNewTab
+  }
+`)
+}

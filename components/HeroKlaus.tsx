@@ -21,7 +21,7 @@ export default function HeroKlaus({
       
 
       <img className={`z-[0] w-full ${styles['parallax-l1']}`} src="hero/layer1.webp" alt="" />
-         <h1 className={`z-[8] text-8xl w-full text-center bottom-[50%] absolute leading-none italic text-white font-black  ${styles['hero-title']}`}>
+         <h1 className={`z-[8] text-8xl w-full text-center bottom-[50%] absolute leading-none italic font-black text-transparent bg-gradient-to-r from-green-800 via-green-800 to-emerald-100 bg-clip-text ${styles['hero-title']}`}>
             
            Moderne Waldarbeit
           </h1>
@@ -35,7 +35,7 @@ export default function HeroKlaus({
       <img className={`z-[8] ${styles['parallax-klaus']}`} src="hero/klaus.webp" alt="" />
       <img className={`z-[999] self-end ${styles['parallax-foreground-back']}`} src="hero/foreground-back.webp" alt="" />
       <img className={`z-[999] self-end ${styles['parallax-foreground-front']}`} src="hero/foreground-front.webp" alt="" />
-      <h2 className={`z-[8] text-8xl w-full text-center bottom-[-20%] absolute leading-none italic text-emerald-300  ${styles['hero-subtitle']}`}>
+      <h2 className={`z-[8] text-2xl w-full text-center bottom-[20%] absolute leading-none font-black text-white opacity-80 ${styles['hero-subtitle']}`}>
             
            Nachhaltig gedacht
           </h2>

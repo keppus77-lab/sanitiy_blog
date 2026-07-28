@@ -1,4 +1,4 @@
-import { MdArticle, MdPerson, MdCategory } from 'react-icons/md'
+import { MdArticle, MdNewspaper, MdCategory } from 'react-icons/md'
 import { defineField, defineType } from 'sanity'
 import { format, parseISO } from 'date-fns'
 
@@ -6,7 +6,7 @@ export default defineType({
   name: 'post',
   title: 'Post',
   type: 'document',
-  icon: MdArticle,
+  icon: MdNewspaper,
   fields: [
     defineField({
       name: 'title',

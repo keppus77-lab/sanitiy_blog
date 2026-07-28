@@ -1,3 +1,9 @@
+
+import AuthorAvatar from "./AuthorAvatar";
+
+import { headerLinks } from "../lib/sanity.queries"
+import Link from "next/link";
+console.log(headerLinks);
 export default function BlogHeaderNavi() {
   return (
    <header className="bg-white/80 backdrop-blur-lg border-b border-green-100 sticky top-0 z-50 shadow-sm">
@@ -5,8 +11,9 @@ export default function BlogHeaderNavi() {
             <div className="flex justify-between items-center py-4">
                 {/* Logo */}
                 <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-emerald-700 rounded-lg flex items-center justify-center text-white text-2xl font-bold shadow-lg">
-                    W
+                <div className="w-15 h-15 rounded-lg flex items-center ">
+                   <img src="waldarbeit-logo.webp" className="rounded-full" alt="waldarbeit Logo" />
+                   
                 </div>
                 <div>
                     <h1 className="text-xl font-bold text-gray-900">Waldarbeit.Blog</h1>
@@ -16,6 +23,9 @@ export default function BlogHeaderNavi() {
 
                 {/* Navigation */}
                 <nav className="hidden md:flex items-center gap-8">
+
+         
+   
                 <a href="#" className="text-green-700 font-semibold transition-colors">Start</a>
                 <a href="#" className="text-gray-700 hover:text-green-700 font-medium transition-colors">Blog</a>
                 <a href="#" className="text-gray-700 hover:text-green-700 font-medium transition-colors">Kategorien</a>

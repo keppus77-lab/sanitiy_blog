@@ -28,7 +28,7 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
         month: "long",
         year: "numeric",
         })
-console.log(postData);
+
   return (
     <>
     
@@ -37,7 +37,7 @@ console.log(postData);
                 className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
                 >
                 {/* Image Placeholder */}
-                <div className="h-48 bg-gradient-to-br from-green-600 to-emerald-700 flex items-center justify-center text-7xl">
+                <div className="bg-gradient-to-br from-green-600 to-emerald-700  text-7xl overflow-hidden">
                     <CoverImage title={postData.title} slug={postData.slug} image={postData.coverImage} priority={false}
                      />
                                     </div>
