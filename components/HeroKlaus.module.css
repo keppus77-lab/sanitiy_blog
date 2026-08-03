@@ -8,6 +8,7 @@
     grid-area: stack;
     animation: parallax linear;
     animation-timeline: scroll();
+    
 }
 
 .parallax > img {
@@ -31,10 +32,13 @@
 }
 
 .hero-title {
-    
+    --bg-size:300%;
     --parallax-speed: 50;
     font-size: clamp(3rem, 12vw, 8rem);
+  
+
 }
+
 
 .hero-subtitle{
  --parallax-speed: 50;
@@ -78,9 +82,11 @@ font-size: clamp(2rem, 5vw, 3rem);
 
 @keyframes parallax {
     to {
-        transform: translateY(calc(var(--parallax-speed) * 50px));
+        transform: translateY(calc(var(--parallax-speed) * 50px)) ;
+
     }
 }
+
 
 .hero img {
     display: block;

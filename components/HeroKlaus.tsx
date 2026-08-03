@@ -18,7 +18,7 @@ export default function HeroKlaus({
     <section className="bg-gradient-to-r from-green-800 via-green-700 to-emerald-800 text-white relative ">
     <div className={`max-w-7xl mx-auto relative z-0   h-[calc(100vh-76px)] grid ${styles.parallax}`}>
       
-      
+
 
       <img className={`z-[0] w-full ${styles['parallax-l1']}`} src="hero/layer1.webp" alt="" />
          <h1 className={`z-[8] text-8xl w-full text-center bottom-[50%] absolute leading-none italic font-black text-transparent bg-gradient-to-r from-green-800 via-green-800 to-emerald-100 bg-clip-text ${styles['hero-title']}`}>
@@ -33,7 +33,7 @@ export default function HeroKlaus({
     
       <img className={`z-[7] ${styles['parallax-baumr']}`} src="hero/baum_r.webp" alt="" />
       <img className={`z-[8] ${styles['parallax-klaus']}`} src="hero/klaus.webp" alt="" />
-      <img className={`z-[999] self-end ${styles['parallax-foreground-back']}`} src="hero/foreground-back.webp" alt="" />
+      
       <img className={`z-[999] self-end ${styles['parallax-foreground-front']}`} src="hero/foreground-front.webp" alt="" />
       <h2 className={`z-[8] text-2xl w-full text-center bottom-[20%] absolute leading-none font-black text-white opacity-80 ${styles['hero-subtitle']}`}>
             

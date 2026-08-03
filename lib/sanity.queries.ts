@@ -11,7 +11,7 @@ const postFields = groq`
   "slug": slug.current,
   "author": author->{name, picture},
   "category": category->{title, "slug": slug.current},
-  "categories": categories[]->{
+  "tags": tags[]->{
     title,
     "slug": slug.current
   }
@@ -71,7 +71,14 @@ export interface Post {
 
 
 }
-
+export interface NavItem {
+    _id: string
+    linkType: string
+    openInNewTab: boolean
+    title: string
+    url?: string
+  
+}
 export interface Settings {
   title?: string
   description?: any[]
@@ -82,7 +89,14 @@ export interface Settings {
   export const categoriesQuery = groq`
     *[_type == "category"] | order(title asc) {
       title,
-      slug: slug.current
+      "slug": slug.current
+    }
+  `;
+
+  export const tagsQuery = groq`
+    *[_type == "tags"] | order(title asc) {
+      title,
+      "slug": slug.current
     }
   `;
 
@@ -160,19 +174,17 @@ export async function getTagPage(tagSlug: string, page: number, pageSize: number
   )
 }
 
-export async function headerLinks() {
-  return await client.fetch(`
-  *[_type == "navigationLink" && showInHeader == true] | order(headerOrder asc) {
-    title,
-    linkType,
-    "url": select(
-      linkType == "category" => "/blog/" + categoryLink->slug.current,
-      linkType == "post" => "/blog/" + postLink->category->slug.current + "/" + postLink->slug.current,
-      linkType == "page" => "/" + pageLink->slug.current,
-      linkType == "external" => externalUrl,
-      ""
-    ),
-    openInNewTab
-  }
-`)
-}
+export const headerLinks =  groq`*[_type == "navigationLink" && showInHeader == true] | order(headerOrder asc) {
+        title,
+        linkType,
+        "url": select(
+          linkType == "category" => "/blog/" + categoryLink->slug.current,
+          linkType == "post" => "/blog/" + postLink->category->slug.current + "/" + postLink->slug.current,
+          linkType == "page" => "/" + pageLink->slug.current,
+          linkType == "external" => externalUrl,
+          ""
+        ),
+        openInNewTab
+      }
+    
+  `;

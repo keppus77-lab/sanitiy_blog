@@ -8,12 +8,15 @@ import {
 import {
   indexQuery,
   type Post,
+  type NavItem,
   postAndMoreStoriesQuery,
   postBySlugQuery,
-  postSlugsQuery,
+  postSlugsQuery,  
   type Settings,
   settingsQuery,
-  categoriesQuery
+  categoriesQuery,
+  tagsQuery,
+  headerLinks
   
 } from 'lib/sanity.queries'
 import type { PreviewData } from 'next'
@@ -79,8 +82,21 @@ export async function getPostAndMoreStories(
   return await client.fetch(postAndMoreStoriesQuery, { slug })
 }
 
-export async function getCategories(client: SanityClient): Promise<Pick<Record<string, any>, 'title' | 'slug'>[]> {
+export async function getAllCategories(client: SanityClient): Promise<Pick<Record<string, any>, 'title' | 'slug'>[]> {
     const response = await client.fetch(categoriesQuery);
+    return response || [];
+  }
+
+export async function getAllTags(client: SanityClient): Promise<Pick<Record<string, any>, 'title' | 'slug'>[]> {
+    const response = await client.fetch(tagsQuery);
+    return response || [];
+  }  
+
+
+  
+export async function getNavi(client: SanityClient): Promise<NavItem[]> {
+    const response = await client.fetch<NavItem[]>(headerLinks);
+    console.log(response);
     return response || [];
   }
 
@@ -91,3 +107,4 @@ export const client = createClient({
   useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN,
 })
+

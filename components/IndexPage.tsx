@@ -37,21 +37,10 @@ export default function IndexPage(props: IndexPageProps) {
           <HeroKlaus  title={title} description={description} />
           <BlogHeader title={title} description={description} level={4} />
 
-          {heroPost && (
-            <HomepageHero
-            description={description}
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              subtitle={heroPost.subtitle}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-              category={heroPost.category}
-              emoji={heroPost.emoji || '🚜'}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+
+         
+        
+          {posts.length > 0 && <MoreStories posts={posts} />}
         
       
       <WaldarbeitBlog />
