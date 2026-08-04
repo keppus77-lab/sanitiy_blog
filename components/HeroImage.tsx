@@ -8,6 +8,7 @@ interface CoverImageProps {
     slug?: string
     image: any
     priority?: boolean
+    postid?: string
 }
 
 export default function HeroImage(props: CoverImageProps) {

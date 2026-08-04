@@ -3,7 +3,7 @@ import AuthorAvatar from "./AuthorAvatar";
 
 import { getNavi, client, getAllCategories, getAllTags } from "../lib/sanity.client";
 
-import './BlogHeaderNavi.css';
+
 import { NavItem } from "lib/sanity.queries";
 
 
@@ -18,13 +18,28 @@ interface HeaderProps {
 export default function BlogHeaderNavi() {
     
     return (
+        <>
+          <style>{`
+              @view-transition {navigation: auto;} 
+           ::view-transition-group(*) {
+            animation-duration: 5s;
+          }
+        ::view-transition-old(*),
+        ::view-transition-new(*) {
+            animation: none;
+            mix-blend-mode: normal;
+            height: 100%;
+            overflow: clip;
+            border-radius: 2rem;
+        }
+            `}</style>
         <header className="bg-white/80 backdrop-blur-lg border-b border-green-100 sticky top-0 z-50 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
                 {/* Logo */}
                 <div className="flex items-center gap-3">
                 <div className="w-15 h-15 rounded-lg flex items-center ">
-                    <img src="waldarbeit-logo.webp" className="rounded-full" alt="waldarbeit Logo" />
+                    <img src="/waldarbeit-logo.webp" className="rounded-full" alt="waldarbeit Logo" />
                 </div>
                 <div>
                     <h1 className="text-xl font-bold text-gray-900">Waldarbeit.Blog</h1>
@@ -41,7 +56,7 @@ export default function BlogHeaderNavi() {
                         if (link.linkType === 'text') {
                             return (
                                 
-                                <span className="text-gray-700 hover:text-green-700 font-medium transition-colors">{link.title}</span>
+                                <span key={index} className="text-gray-700 hover:text-green-700 font-medium transition-colors">{link.title}</span>
                                 
                             )
                         }
@@ -63,7 +78,7 @@ export default function BlogHeaderNavi() {
                         }
                         if (link.linkType === 'category') {
                             return (
-                                <div className="group relative">
+                                <div key={index} className="group relative">
                                         <button className="px-4 py-2 text-gray-700 hover:text-green-700 hover:bg-green-50 rounded-md transition-colors font-medium flex items-center gap-1">
                                         {link.title}
                                         <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,7 +107,7 @@ export default function BlogHeaderNavi() {
 
                         if (link.linkType === 'tags') {
                             return (
-                                <div className="group relative">
+                                <div key={index} className="group relative">
                                         <button className="px-4 py-2 text-gray-700 hover:text-green-700 hover:bg-green-50 rounded-md transition-colors font-medium flex items-center gap-1">
                                         {link.title}
                                         <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,5 +160,6 @@ export default function BlogHeaderNavi() {
             </div>
             </div>
         </header>
+        </>
     )
 }

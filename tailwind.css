@@ -39,9 +39,21 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+ 
+
+
 }
 
+
+
+
+
+
 @layer utilities {
+
+
+ 
+
   .text-gradient {
     -webkit-background-clip: text;
     background-clip: text;

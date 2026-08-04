@@ -17,7 +17,7 @@ function calculateReadingTime2(text: string): number {
 
 
 export default function PostPreview(prpos: { postData: Post; category: string  }) {
-  const { postData, category, categoryTitle } = prpos
+  const { postData } = prpos
   console.log(prpos
 
   )
@@ -37,8 +37,8 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
                 className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
                 >
                 {/* Image Placeholder */}
-                <div className="bg-gradient-to-br from-green-600 to-emerald-700  text-7xl overflow-hidden">
-                    <CoverImage title={postData.title} slug={postData.slug} image={postData.coverImage} priority={false}
+                <div className="bg-linear-to-br from-green-600 to-emerald-700  text-7xl overflow-hidden">
+                    <CoverImage title={postData.title} slug={`/blog/${postData.category?.slug}/${postData.slug}`} postid={postData._id} image={postData.coverImage} priority={false}
                      />
                                     </div>
 

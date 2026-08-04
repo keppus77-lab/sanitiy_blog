@@ -8,24 +8,28 @@ interface CoverImageProps {
   slug?: string
   image: any
   priority?: boolean
+  postid?: string
 }
 
 export default function CoverImage(props: CoverImageProps) {
-  const { title, slug, image: source, priority } = props
+  const { title, slug, image: source, priority, postid} = props
   const image = source?.asset?._ref ? (
     <div
       className={cn('shadow-small', {
         'transition-shadow duration-200 hover:shadow-medium': slug,
       })}
     >
-      <Image
-        className="h-auto w-full"
+      <img
+        className="teaserImage h-auto w-full" 
         width={2000}
         height={1000}
         alt=""
         src={urlForImage(source).height(1000).width(2000).url()}
         sizes="100vw"
-        priority={priority}
+              
+    style={{
+      viewTransitionName: `article_${postid}`
+    }}
       />
     </div>
   ) : (
@@ -35,7 +39,7 @@ export default function CoverImage(props: CoverImageProps) {
   return (
     <>
       {slug ? (
-        <Link href={`/posts/${slug}`} aria-label={title}>
+        <Link href={slug} aria-label={title}>
           {image}
         </Link>
       ) : (

@@ -1,25 +1,15 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { CommentForm } from './CommentForm'
 import { CommentList } from './CommentList'
+import type { Comment } from '../types/comment'
 
-interface Comment {
-  _id: string
-  content: string
-  createdAt: string
-  edited: boolean
-  editedAt?: string
-  author: {
-    name: string
-    image?: string
-  }
-  replies?: Comment[]
-}
+
 
 interface CommentSectionProps {
-  postId: string
+    postId: string
 }
 
 export default function CommentSection({ postId }: CommentSectionProps) {
@@ -28,21 +18,22 @@ export default function CommentSection({ postId }: CommentSectionProps) {
     const [comments, setComments] = useState<Comment[]>([])
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        fetchComments()
-    }, [postId])
 
-    const fetchComments = async () => {
-        try {
+    const fetchComments = useCallback(async () => {
+    try {
         const res = await fetch(`/api/comments?postId=${postId}`)
         const data = await res.json()
         setComments(data)
-        } catch (error) {
+    } catch (error) {
         console.error('Fehler beim Laden der Kommentare:', error)
-        } finally {
+    } finally {
         setLoading(false)
-        }
     }
+}, [postId])
+
+useEffect(() => {
+    fetchComments()
+}, [fetchComments])
 
     const handleCommentAdded = () => {
         fetchComments()

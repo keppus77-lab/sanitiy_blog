@@ -9,6 +9,7 @@ import page from './page'
 import user from './user'
 import comment from './comment'
 import navi from './navi'
+import footerSettings from './footerSettings'
 
 
 export const schemaTypes = [
@@ -20,6 +21,7 @@ export const schemaTypes = [
   user, 
   comment,
   tags,
-  navi
+  navi,
+  footerSettings
   //gallery
 ]

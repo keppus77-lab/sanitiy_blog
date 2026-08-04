@@ -6,7 +6,7 @@ import type { Post } from 'lib/sanity.queries'
 export default function MoreStories({ posts, title, description }: { posts: Post[]; title?: string; description?: string }) {
   
   return (
-    <div className='min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 z-[999] relative'>
+    <div className='min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50 z-[999] relative'>
       
        <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <h1 className="text-3xl font-semibold"></h1>
@@ -23,6 +23,7 @@ export default function MoreStories({ posts, title, description }: { posts: Post
           <PostPreview
             key={post._id}
             postData={post} 
+            category={post.category?.slug ?? ''}
            
           />
         ))}

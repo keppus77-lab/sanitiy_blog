@@ -66,7 +66,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 
   // Wenn URL-Kategorie nicht zur Post-Kategorie passt -> Redirect auf kanonische URL
   if (categoryFromUrl !== categoryFromPost) {
-    alert("rwer");
+    
     return {
       redirect: {
         destination: `/blog/${categoryFromPost}/${post.slug}`, // ggf. post.slug.current je nach Typ

@@ -5,19 +5,7 @@ import { useSession } from 'next-auth/react'
 import { CommentForm } from './CommentForm'
 import { formatDistanceToNow } from 'date-fns'
 import { de } from 'date-fns/locale'
-
-interface Comment {
-  _id: string
-  content: string
-  createdAt: string
-  edited: boolean
-  editedAt?: string
-  author: {
-    name: string
-    image?: string
-  }
-  replies?: Comment[]
-}
+import type { Comment } from '../types/comment'
 
 interface CommentListProps {
   comments: Comment[]
@@ -58,7 +46,8 @@ function CommentItem({
   const [isEditing, setIsEditing] = useState(false)
   const [editContent, setEditContent] = useState(comment.content)
 
-  const isAuthor = session?.user?.email === comment.author.email
+ const isAuthor = session?.user?.email === comment.author.email
+  
 
   const handleEdit = async () => {
     try {
@@ -97,7 +86,7 @@ function CommentItem({
     <div className="bg-white border border-gray-200 rounded-xl p-6">
       <div className="flex items-start gap-4">
         {/* Avatar */}
-        <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+        <div className="w-10 h-10 bg-linear-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
           {comment.author.image ? (
             <img src={comment.author.image} alt="" className="w-10 h-10 rounded-full" />
           ) : (

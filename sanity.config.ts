@@ -24,6 +24,7 @@ import tagsType from 'schemas/tags'
 import settingsType from 'schemas/settings'
 import naviType from 'schemas/navi'
 import pageType from 'schemas/page'
+import footerType from 'schemas/footerSettings'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
@@ -35,7 +36,8 @@ export default defineConfig({
   title,
   schema: {
     // If you want more content types, you can add them to this array
-    types: [categoryType, authorType, postType, tagsType, settingsType, naviType, pageType ],
+
+    types: [categoryType, authorType, postType, tagsType, settingsType, naviType, footerType, pageType ],
   },
   plugins: [
     structureTool({

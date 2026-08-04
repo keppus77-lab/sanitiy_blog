@@ -31,15 +31,28 @@ export default function IndexPage(props: IndexPageProps) {
 
   return (
     <>
-      <IndexPageHead settings={settings} />
+        <IndexPageHead settings={settings} />
       
       <Layout preview={preview} loading={loading}>
           <HeroKlaus  title={title} description={description} />
           <BlogHeader title={title} description={description} level={4} />
 
-
-         
-        
+{/*
+          {heroPost && (
+            <HomepageHero
+            description={description}
+              title={heroPost.title}
+              coverImage={heroPost.coverImage}
+              date={heroPost.date}
+              author={heroPost.author}
+              subtitle={heroPost.subtitle}
+              slug={heroPost.slug}
+              excerpt={heroPost.excerpt}
+              category={heroPost.category}
+              emoji={heroPost.emoji || '🚜'}
+            />
+          )}
+       */} 
           {posts.length > 0 && <MoreStories posts={posts} />}
         
       

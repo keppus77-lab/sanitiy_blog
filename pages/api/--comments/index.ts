@@ -3,8 +3,8 @@ import { authOptions } from '../auth/[...nextauth]'
 import { client } from '../../../lib/sanity.client'
 
 export default async function handler(req, res) {
-  if (req.method === 'GET') {
-    try {
+  try {
+    if (req.method === 'GET') {
       const { postId } = req.query
 
       if (!postId) {
@@ -34,16 +34,9 @@ export default async function handler(req, res) {
       )
 
       return res.status(200).json(comments)
-    } catch (error) {
-      console.error(error)
-      return res.status(500).json({
-        error: 'Interner Serverfehler',
-      })
     }
-  }
 
-  if (req.method === 'POST') {
-    try {
+    if (req.method === 'POST') {
       const session = await getServerSession(req, res, authOptions)
 
       if (!session?.user) {
@@ -88,7 +81,9 @@ export default async function handler(req, res) {
           _ref: user._id,
         },
         content,
-        approved: user.role === 'admin' || user.role === 'moderator',
+        approved:
+          user.role === 'admin' ||
+          user.role === 'moderator',
         ...(parentCommentId && {
           parentComment: {
             _type: 'reference',
@@ -99,15 +94,16 @@ export default async function handler(req, res) {
       })
 
       return res.status(201).json(comment)
-    } catch (error) {
-      console.error(error)
-      return res.status(500).json({
-        error: 'Interner Serverfehler',
-      })
     }
-  }
 
-  return res.status(405).json({
-    error: 'Methode nicht erlaubt',
-  })
+    return res.status(405).json({
+      error: 'Methode nicht erlaubt',
+    })
+  } catch (error) {
+    console.error(error)
+
+    return res.status(500).json({
+      error: 'Interner Serverfehler',
+    })
+  }
 }
