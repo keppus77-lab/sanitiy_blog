@@ -26,6 +26,7 @@ import naviType from 'schemas/navi'
 import pageType from 'schemas/page'
 import footerType from 'schemas/footerSettings'
 
+
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
 

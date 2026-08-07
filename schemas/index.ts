@@ -10,6 +10,7 @@ import user from './user'
 import comment from './comment'
 import navi from './navi'
 import footerSettings from './footerSettings'
+import settings1 from './settings'
 
 
 export const schemaTypes = [
@@ -22,6 +23,8 @@ export const schemaTypes = [
   comment,
   tags,
   navi,
-  footerSettings
+  footerSettings,
+  
+
   //gallery
 ]

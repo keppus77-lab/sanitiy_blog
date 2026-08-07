@@ -9,10 +9,10 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body className="bg-white text-black">
-     <BlogHeaderNavi />
+        
           <Main />
           <NextScript />
-        <Footer/>
+        
       </body>
     </Html>
   )

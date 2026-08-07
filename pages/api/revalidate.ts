@@ -53,7 +53,7 @@ export default async function revalidate(
     )
     if (!isValidSignature) {
       const message = 'Invalid signature'
-      console.log(message)
+      
       return res.status(401).send(message)
     }
 

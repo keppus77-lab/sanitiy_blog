@@ -1,37 +1,53 @@
 
 import AuthorAvatar from "./AuthorAvatar";
 
-import { getNavi, client, getAllCategories, getAllTags } from "../lib/sanity.client";
 
 
+import { readToken } from 'lib/sanity.api'
 import { NavItem } from "lib/sanity.queries";
+import {getSettings, getNavi, getAllCategories, getAllTags, getAllPosts, getClient} from '../lib/sanity.client'
 
 
-    const navi = await getNavi(client); 
-    const cats = await  getAllCategories(client);
-    const tags = await  getAllTags(client);
-    
+
+ const [settings, nav, cats, tags, posts] = await Promise.all([
+    getSettings(getClient()),  
+        getNavi(getClient()),  
+    getAllCategories(getClient()),
+    getAllTags(getClient()),
+    getAllPosts(getClient()),
+    ])
+
+console.log(nav)
+
 interface HeaderProps {
-    links: NavItem[]
+    navi: NavItem[]
+    cats: any[]
+    tags: any[]
+
 }
 
-export default function BlogHeaderNavi() {
+
+    
+
+
+export default function BlogHeaderNavi()  {
+
     
     return (
         <>
-          <style>{`
-              @view-transition {navigation: auto;} 
-           ::view-transition-group(*) {
-            animation-duration: 5s;
-          }
-        ::view-transition-old(*),
-        ::view-transition-new(*) {
-            animation: none;
-            mix-blend-mode: normal;
-            height: 100%;
-            overflow: clip;
-            border-radius: 2rem;
-        }
+            <style>{`
+            @view-transition {navigation: auto;} 
+            ::view-transition-group(*) {
+                animation-duration: 5s;
+            }
+            ::view-transition-old(*),
+            ::view-transition-new(*) {
+                animation: none;
+                mix-blend-mode: normal;
+                height: 100%;
+                overflow: clip;
+                border-radius: 2rem;
+            }
             `}</style>
         <header className="bg-white/80 backdrop-blur-lg border-b border-green-100 sticky top-0 z-50 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,7 +67,7 @@ export default function BlogHeaderNavi() {
                 <nav className="hidden md:flex items-center gap-8">
 
                 
-                    {navi.map((link, index) => {
+                    {nav.map((link, index) => {
                      // Kein Link bei linkType === 'text'
                         if (link.linkType === 'text') {
                             return (
@@ -122,7 +138,7 @@ export default function BlogHeaderNavi() {
                             
                                     {tags.map((tag, index) => {
                                         return(
-                                                <a key={index} href={'test'+tag.slug} className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors">
+                                                <a key={index} href={'/tag/'+tag.slug} className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors">
                                                     {tag.title}
                                                 </a>
                                         )
@@ -146,18 +162,138 @@ export default function BlogHeaderNavi() {
                         )
                     })}
                         
-                        
+                     
         
                     
                 </nav>
 
-                
-                <button className="md:hidden p-2 text-gray-700">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+            </div>     
+
+            <div className="group">
+                <input type="checkbox" className="peer hidden " id="cb-menu"></input>
+                <button className="md:hidden p-2 text-gray-700 absolute right-2 top-7.25 hover:bg-gray-100 rounded-md">
+                    <label htmlFor="cb-menu" >
+
+                        <svg id="hamburgerIcon" className="w-6 h-6 block group-has-checked:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        
+                        <svg id="closeIcon" className="w-6 h-6 hidden  group-has-checked:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </label> 
                 </button>
-            </div>
+                
+           
+
+
+        
+        <nav id="mobileMenu" className="bg-white shadow-md absolute w-full left-0 max-h-0 md:hidden border-t border-gray-200 overflow-hidden opacity-0 transition-all duration-300 peer-checked:max-h-1000 peer-checked:opacity-100">
+        <div className="py-4 space-y-1">
+          
+          
+           {nav.map((link, index) => {
+                     // Kein Link bei linkType === 'text'
+                        if (link.linkType === 'text') {
+                            return (
+                                
+                                <span key={index} className="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors font-medium">{link.title}</span>
+                                
+                            )
+                        }
+
+                        // Externe Links
+                        if (link.linkType === 'external') {
+                        return (
+                            
+                            <a
+                                key={index}
+                                target={link.openInNewTab ? '_blank' : '_self'}
+                                rel={link.openInNewTab ? 'noopener noreferrer' : undefined}
+                                className="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors font-medium"
+                            >
+                                {link.title}
+                            </a>
+                            
+                        )
+                        }
+                        if (link.linkType === 'category') {
+                            return (
+                                <div key={index} className="group/cat relative">
+                                    <input type="checkbox" className="peer hidden" id="cb-cat"></input>
+                                         <button className="w-full">
+                                            <label className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors font-medium" htmlFor="cb-cat">{link.title}
+                                                <svg className="w-5 h-5 transition-transform group-has-checked/cat:rotate-180" id="tagDropdownIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                                </svg>
+                                            </label>
+                                        </button>
+                                        
+                                        <div id="kategorienDropdown" className="pl-4 space-y-1 hidden peer-checked:block">
+                                           
+                                            {cats.map((cat, index) => {
+                                                return(
+                                                        <a key={index} href={'test'+cat.slug} className="block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors text-sm">
+                                                            {cat.title}
+                                                        </a>
+                                                )
+                                            })}
+                                    </div>
+                                </div>
+
+                            )
+
+                        }
+
+                        if (link.linkType === 'tags') {
+                            return (
+                                <div key={index} className="group/tags relative">
+                                    <input type="checkbox" className="peer hidden" id="cb-tags"></input>
+                                        
+                                        <button className="w-full">
+                                            <label className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors font-medium" htmlFor="cb-tags">{link.title}
+                                                <svg className="w-5 h-5 transition-transform group-has-checked/tags:rotate-180" id="tagDropdownIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                                </svg>
+                                            </label>
+                                        </button>
+                                        
+                                        
+                                        <div id="tagDropdown" className="pl-4 space-y-1 hidden peer-checked:block">
+                                            
+                                        
+                            
+                                        {tags.map((tag, index) => {
+                                            return(
+                                                <a key={index} href={'/tag/'+tag.slug} className="block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors text-sm">
+                                                    {tag.title}
+                                                </a>
+                                            )
+                                        })}
+                                        </div>
+                                </div>
+
+                            )
+
+                        }
+                        // Interne Links (category, post, page)
+                        return (
+                            <a
+                            key={index}
+                            href={link.url}                            
+                            className="text-gray-700 hover:text-green-700 font-medium transition-colors"
+                            >
+                            {link.title}
+                            </a>
+                        
+                        )
+                    })}
+                    </div>
+      </nav>
+</div>
+
+
+
             </div>
         </header>
         </>

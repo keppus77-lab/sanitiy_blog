@@ -5,7 +5,7 @@ export default function BlogPostHero() {
     const [isBookmarked, setIsBookmarked] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50">
+        <div className="min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50">
         {/* Header/Navigation */}
         
 
@@ -41,7 +41,7 @@ export default function BlogPostHero() {
             <div className="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-gray-200">
                 {/* Author */}
                 <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-emerald-700 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-lg">
+                <div className="w-12 h-12 bg-linear-to-br from-green-600 to-emerald-700 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-lg">
                     MK
                 </div>
                 <div>
@@ -123,7 +123,7 @@ export default function BlogPostHero() {
 
             {/* Featured Image */}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-10 group">
-                <div className="aspect-video bg-gradient-to-br from-green-700 via-emerald-600 to-green-800 flex items-center justify-center relative">
+                <div className="aspect-video bg-linear-to-br from-green-700 via-emerald-600 to-green-800 flex items-center justify-center relative">
                 {/* Image Placeholder with Forest Scene */}
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
@@ -137,7 +137,7 @@ export default function BlogPostHero() {
                 </div>
                 
                 {/* Image Caption */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-6">
                 <p className="text-white text-sm">
                     📸 Harvester im Einsatz – Präzise Holzernte mit modernster Technik | Foto: Martin Keppler
                 </p>
@@ -154,7 +154,7 @@ export default function BlogPostHero() {
             </div>
 
             {/* Table of Contents */}
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 mb-10">
+            <div className="bg-linear-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 mb-10">
                 <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                 <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
@@ -202,9 +202,9 @@ export default function BlogPostHero() {
 
             {/* Continue Reading Divider */}
             <div className="flex items-center gap-4 my-12">
-                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-green-300 to-transparent"></div>
+                <div className="flex-1 h-px bg-linear-to-r from-transparent via-green-300 to-transparent"></div>
                 <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">Artikel lesen</span>
-                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-green-300 to-transparent"></div>
+                <div className="flex-1 h-px bg-linear-to-r from-transparent via-green-300 to-transparent"></div>
             </div>
 
             {/* Placeholder for Article Content */}

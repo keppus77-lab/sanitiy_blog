@@ -92,23 +92,26 @@ export const getStaticPaths = async () => {
   const slugs = await getAllPostsSlugs()
 
   const paths = (slugs || []).map((s) => {
+    console.log("!", s, typeof s);
     if (typeof s === 'string') {
       return {
-        params: { category: 'blog', slug: s }
+        params: { category: '', slug: s }
       }
     }
     
     const item: any = s
+    if(item.category !== undefined){
     const slug = (typeof item?.slug === 'object' ? item.slug?.current : item?.slug) || ''
     const category = (typeof item?.category === 'object' ? item.category?.slug : item?.category) || 'blog'
     
     return {
       params: { category, slug }  // ← Objekt mit params!
     }
+    }
   }).filter(Boolean)
-
+  
   return {
-    paths,
+    paths, 
     fallback: 'blocking',
   }
 }

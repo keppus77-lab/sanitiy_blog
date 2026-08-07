@@ -5,7 +5,7 @@ import { defineArrayMember, defineField, defineType } from 'sanity'
 import OpenGraphInput from './OpenGraphInput'
 
 export default defineType({
-  name: 'settings',
+  name: 'settings_alt',
   title: 'Settings',
   type: 'document',
   icon: CogIcon,

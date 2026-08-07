@@ -162,7 +162,7 @@
                     {/* Copy Link */}
                     <button
                     onClick={copyToClipboard}
-                    className="group relative p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+                    className="group relative p-3 rounded-xl bg-linear-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white transition-all duration-300 hover:scale-110 hover:-translate-y-1"
                     aria-label="Link kopieren"
                     >
                     {copied ? (

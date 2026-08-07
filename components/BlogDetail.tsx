@@ -29,7 +29,7 @@ function countWordsPortableText(content: any[]): number {
         .map((c) => c?.text ?? "")
         .join(" ")
         .trim();
-        console.log(allText.split(/\s+/).length);
+        
 
     if (!allText) return 0;
     return allText.split(/\s+/).length;
@@ -62,8 +62,8 @@ export default function BlogDetail(prpos: { postData: Post }) {
     const readingTime = calculateReadingTime(isStringContent ? plainText : postData.content);
 
     const handlePrint = () => {
-    window.print()
-}
+        window.print()
+    }
     const portableContent = Array.isArray(postData.content)
     ? (postData.content as TypedObject[])
     : null
@@ -75,7 +75,11 @@ export default function BlogDetail(prpos: { postData: Post }) {
         month: "long",
         year: "numeric",
         })
+     
     return (
+        <>
+
+
         <div className="min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50">
         {/* Header/Navigation */}
         <Breadcrumb title={postData.title} slug={postData.slug} categorySlug={postData.category.slug} categoryTitle={postData.category.title}></Breadcrumb>
@@ -181,11 +185,12 @@ export default function BlogDetail(prpos: { postData: Post }) {
                     </button>
 
                     
-                    <SocialShareBar className="group flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105"
+                   {/* <SocialShareBar className="group flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105"
                             url={window.location.href}
                             title={postData.title}
                             description={postData.excerpt}
                         />
+                        */}
 
                     <button onClick={handlePrint} className="flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,7 +244,7 @@ export default function BlogDetail(prpos: { postData: Post }) {
                 <div className="flex flex-wrap gap-2 mb-8">
                 {postData.tags?.map((item, index) => (
                 <Link href={`/${item.slug}`}
-                key={item.id}
+                key={item.slug}
                     className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full" >#{item.title}</Link>
                     ))}
                 
@@ -280,5 +285,6 @@ export default function BlogDetail(prpos: { postData: Post }) {
             </div>
         </article>
         </div>
+        </>
     );
     }

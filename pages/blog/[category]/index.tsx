@@ -49,15 +49,8 @@ export default function CategoryPage(
 
     return (
         <>
-      
-
-        
-            
-            <MoreStories posts={posts} title={category.title}   />
-        
-        
-
-        {/* Pager */}
+        <MoreStories posts={posts} title={category.title}   />
+         {/* Pager */}
         <CategoryPager actpage={page} totalPages={totalPages} categorySlug={categorySlug} />
       </>
     )

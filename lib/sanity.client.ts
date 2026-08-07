@@ -62,10 +62,29 @@ export async function getAllPosts(client: SanityClient): Promise<Post[]> {
   return (await client.fetch(indexQuery)) || []
 }
 
-export async function getAllPostsSlugs(): Promise<Pick<Post, 'slug'>[]> {
+export async function getAllPostsSlugs__(): Promise<Pick<Post, 'slug'>[]> {
   const client = getClient()
   const slugs = (await client.fetch<string[]>(postSlugsQuery)) || []
   return slugs.map((slug) => ({ slug }))
+}
+
+export async function getAllPostsSlugs() {
+  const client = getClient()
+
+  const posts = await client.fetch<
+    { slug: string; categorySlug: string }[]
+  >(postSlugsQuery)
+
+const test  = posts.map((post) => ({
+    category: post.categorySlug,
+    slug: post.slug,
+  }))
+  
+
+  return posts.map((post) => ({
+    category: post.categorySlug,
+    slug: post.slug,
+  }))
 }
 
 export async function getPostBySlug(
@@ -92,13 +111,20 @@ export async function getAllTags(client: SanityClient): Promise<Pick<Record<stri
     return response || [];
   }  
 
-
+export async function getNavi(client: SanityClient) {
+  try {
+    const response = await client.fetch(headerLinks)
   
-export async function getNavi(client: SanityClient): Promise<NavItem[]> {
-    const response = await client.fetch<NavItem[]>(headerLinks);
-    console.log(response);
-    return response || [];
+    return response 
+  } catch (e) {
+    console.error(e)
+    throw e
   }
+}
+
+
+
+
 
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,

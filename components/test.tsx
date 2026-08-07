@@ -125,7 +125,7 @@
                 className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
                 >
                 {/* Image Placeholder */}
-                <div className="h-48 bg-gradient-to-br from-green-600 to-emerald-700 flex items-center justify-center text-7xl">
+                <div className="h-48 bg-linear-to-br from-green-600 to-emerald-700 flex items-center justify-center text-7xl">
                     {post.image}
                 </div>
 
@@ -160,7 +160,7 @@
                     {/* Meta */}
                     <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                        <div className="w-8 h-8 bg-linear-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
                         {post.author.split(' ').map(n => n[0]).join('')}
                         </div>
                         <div>
@@ -184,7 +184,7 @@
         </main>
 
         {/* Newsletter Section */}
-        <section className="bg-gradient-to-r from-green-800 to-emerald-800 text-white py-16 mt-12">
+        <section className="bg-linear-to-r from-green-800 to-emerald-800 text-white py-16 mt-12">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Bleib auf dem Laufenden

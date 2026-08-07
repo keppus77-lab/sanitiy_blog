@@ -6,6 +6,7 @@ export default defineType({
     title: 'Navigation Link',
     type: 'document',
     icon: MdLink,
+
     fields: [
         defineField( {
         name: 'orderRank',
@@ -29,25 +30,24 @@ export default defineType({
             },
             validation: (Rule) => Rule.required(),
         }),
-        
-        // OPTION 2 CODE BEGINNT HIER:
         defineField({
-        name: 'linkType',
-        title: 'Link-Typ',
-        type: 'string',
-        options: {
-            list: [
-            {title: 'Kategorie-Übersicht', value: 'category'},
-            {title: 'Tags-Übersicht', value: 'tags'},
-            {title: 'Einzelner Post', value: 'post'},
-            {title: 'Seite', value: 'page'},
-            {title: 'Externe URL', value: 'external'},
-            {title: 'Nur Text (kein Link)', value: 'text'},
+            name: 'linkType',
+            title: 'Link-Typ',
+            type: 'string',
+            options: {
+                list: [
+                {title: 'Kategorie-Übersicht', value: 'category'},
+                {title: 'Tags-Übersicht', value: 'tags'},
+                {title: 'Einzelner Post', value: 'post'},
+                {title: 'Seite', value: 'page'},
+                {title: 'Externe URL', value: 'external'},
+                {title: 'Nur Text (kein Link)', value: 'text'},
+                {title: 'Link aud die Home', value: 'home'},            
             ],
-            layout: 'radio',
-        },
-        initialValue: 'page',
-        validation: (Rule) => Rule.required(),
+                layout: 'radio',
+            },
+            initialValue: 'page',
+            validation: (Rule) => Rule.required(),
         }),
 
         // Separates Feld für Kategorie
@@ -131,62 +131,7 @@ export default defineType({
         }),
         // OPTION 2 CODE ENDET HIER
         
-        defineField({
-            name: 'showInHeader',
-            title: 'Im Header anzeigen',
-            type: 'boolean',
-            initialValue: false,
-        }),
-        defineField({
-        name: 'headerOrder',
-            title: 'Sortierung Header',
-            type: 'number',
-            hidden: ({parent}) => !parent?.showInHeader,
-            description: 'Niedrigere Zahlen erscheinen weiter links',
-            validation: (Rule) =>
-                Rule.custom((value, context) => {
-                const showInHeader = (context.parent as any)?.showInHeader
-                if (showInHeader && value === undefined) {
-                    return 'Bitte gib eine Sortierung für den Header an'
-                }
-                return true
-                }),
-        }),
-        defineField({
-            name: 'showInFooter',
-            title: 'Im Footer anzeigen',
-            type: 'boolean',
-            initialValue: false,
-        }),
-        defineField({
-            name: 'footerOrder',
-            title: 'Sortierung Footer',
-            type: 'number',
-            hidden: ({parent}) => !parent?.showInFooter,
-            description: 'Niedrigere Zahlen erscheinen weiter oben/links',
-            validation: (Rule) =>
-                Rule.custom((value, context) => {
-                const showInFooter = (context.parent as any)?.showInFooter
-                if (showInFooter && value === undefined) {
-                    return 'Bitte gib eine Sortierung für den Footer an'
-                }
-                return true
-                }),
-        }),
-        defineField({
-            name: 'footerColumn',
-            title: 'Footer-Spalte',
-            type: 'string',
-            options: {
-                list: [
-                {title: 'Spalte 1', value: 'column1'},
-                {title: 'Spalte 2', value: 'column2'},
-                {title: 'Spalte 3', value: 'column3'},
-                ],
-        },
-        hidden: ({parent}) => !parent?.showInFooter,
-        description: 'Optional: Footer-Spalte für mehrspaltige Layouts',
-        }),
+       
         defineField({
         name: 'openInNewTab',
         title: 'In neuem Tab öffnen',

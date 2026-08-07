@@ -5,18 +5,18 @@ import Avatar from './AuthorAvatar';
 import Link from 'next/link';
 
 export default function HomepageHero(props) {
-console.log('HomepageHero props:', props);
+
     const { title, category, subtitle, coverImage, date, author, slug, excerpt, emoji } = props
     
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50">
+        <div className="min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50">
         {/* Header/Navigation */}
         
 
         {/* Hero Slider Section */}
         <section className="relative overflow-hidden">
             {/* Main Hero Container */}
-            <div className={`relative bg-gradient-to-r from-green-800 via-green-700 to-emerald-800 transition-all duration-700`}>
+            <div className={`relative bg-linear-to-r from-green-800 via-green-700 to-emerald-800 transition-all duration-700`}>
             {/* Animated Background Patterns */}
             <div className="absolute inset-0 opacity-20">
                 <div className="absolute top-20 left-20 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
@@ -136,7 +136,7 @@ console.log('HomepageHero props:', props);
                 className="group relative bg-white rounded-2xl p-6 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-100 overflow-hidden"
                 >
                 {/* Gradient Background on Hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                <div className={`absolute inset-0 bg-linear-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
                 
                 <div className="relative z-10">
                     <div className="text-5xl mb-4">{category.icon}</div>

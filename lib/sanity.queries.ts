@@ -37,7 +37,10 @@ export const postAndMoreStoriesQuery = groq`
 }`
 
 export const postSlugsQuery = groq`
-*[_type == "post" && defined(slug.current)][].slug.current
+*[_type == "post" && defined(slug.current)][]{
+  "slug": slug,
+  "categorySlug": category->slug.current
+  }
 `
 
 export const postBySlugQuery = groq`
@@ -77,8 +80,9 @@ export interface NavItem {
     openInNewTab: boolean
     title: string
     url?: string
-  
 }
+
+
 export interface Settings {
   title?: string
   description?: any[]
@@ -174,17 +178,18 @@ export async function getTagPage(tagSlug: string, page: number, pageSize: number
   )
 }
 
-export const headerLinks =  groq`*[_type == "navigationLink" && showInHeader == true] | order(headerOrder asc) {
+export const headerLinks = groq`*[_type == "navigationLink" ] | order(headerOrder asc) {
         title,
         linkType,
-        "url": select(
-          linkType == "category" => "/blog/" + categoryLink->slug.current,
-          linkType == "post" => "/blog/" + postLink->category->slug.current + "/" + postLink->slug.current,
-          linkType == "page" => "/" + pageLink->slug.current,
-          linkType == "external" => externalUrl,
-          ""
+       "url": coalesce(
+        select(
+            linkType == "category" => "/blog/" + categoryLink->slug.current,
+            linkType == "post" => "/blog/" + postLink->category->slug.current + "/" + postLink->slug.current,
+            linkType == "page" => "/" + pageLink->slug.current,
+            linkType == "external" => externalUrl
+        ),
+        ""
         ),
         openInNewTab
-      }
-    
+      }    
   `;
