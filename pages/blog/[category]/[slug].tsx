@@ -35,7 +35,6 @@ export default function ProjectSlugRoute(props: PageProps) {
 
   return (
   
-
   <PostPage post={post} morePosts={morePosts} settings={settings} />
 
   )
@@ -92,7 +91,7 @@ export const getStaticPaths = async () => {
   const slugs = await getAllPostsSlugs()
 
   const paths = (slugs || []).map((s) => {
-    console.log("!", s, typeof s);
+    
     if (typeof s === 'string') {
       return {
         params: { category: '', slug: s }

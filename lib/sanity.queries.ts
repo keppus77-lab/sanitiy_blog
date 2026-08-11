@@ -82,6 +82,30 @@ export interface NavItem {
     url?: string
 }
 
+export interface footerLinks {
+    _id: string
+    title: string
+    slug: string
+    linkType: string
+    url?: string
+    openInNewTab: boolean
+}
+
+ 
+ 
+
+
+export interface SiteSetting {
+  siteTitle: string
+  headerLinks: NavItem[]
+  siteSubtitle: string
+  logo: any
+  footerHeadline: string
+  footerText: string
+  copyright: string
+  footerLinks: footerLinks[]
+}
+
 
 export interface Settings {
   title?: string
@@ -178,18 +202,55 @@ export async function getTagPage(tagSlug: string, page: number, pageSize: number
   )
 }
 
-export const headerLinks = groq`*[_type == "navigationLink" ] | order(headerOrder asc) {
-        title,
-        linkType,
-       "url": coalesce(
+export const headerLinks = groq`
+*[_type == "settings"][0]{
+  siteTitle,
+  siteSubtitle,
+  HeroHeadline,
+  HeroSubtitle,
+  logo,
+  showSearch,
+  "headerLinks": headerLinks[]->{
+    _id,
+    title,
+    slug,
+    linkType,
+    "url": coalesce(
         select(
-            linkType == "category" => "/blog/" + categoryLink->slug.current,
+            linkType == "category" => "#",
+            linkType == "tags" => "#",
             linkType == "post" => "/blog/" + postLink->category->slug.current + "/" + postLink->slug.current,
             linkType == "page" => "/" + pageLink->slug.current,
-            linkType == "external" => externalUrl
+            linkType == "external" => externalUrl,
+            linkType == "home" => "/"
         ),
         ""
         ),
-        openInNewTab
-      }    
+    openInNewTab
+  },
+  footerHeadline,
+  footerText,
+  copyright,
+  "footerLinks": footerLinks[]->{
+    _id,
+    title,
+    slug,
+    linkType,
+    "url": coalesce(
+        select(
+            linkType == "category" => "#",
+            linkType == "tags" => "#",
+            linkType == "post" => "/blog/" + postLink->category->slug.current + "/" + postLink->slug.current,
+            linkType == "page" => "/" + pageLink->slug.current,
+            linkType == "external" => externalUrl,
+            linkType == "home" => "/"
+        ),
+        ""
+        ),
+    openInNewTab,
+    socialLinks
+  }
+  
+ 
+}
   `;

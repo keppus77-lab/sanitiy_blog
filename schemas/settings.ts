@@ -52,6 +52,13 @@ export default defineType({
         type: 'string',
         group: 'content',
         }),
+            defineField({
+        name: 'siteSubtitle',
+        title: 'Subtitle',
+        type: 'string',
+        group: 'content',
+        }),
+
           defineField({
         name: 'logo',
         title: 'Logo',
@@ -59,26 +66,19 @@ export default defineType({
         group: 'content',
         }),
 
-        defineField({
-        name: 'siteDescription',
-        title: 'Beschreibung',
-        type: 'text',
-        rows: 3,
-        group: 'content',
-        }),
+    
 
         defineField({
-        name: 'homepageHeadline',
-        title: 'Homepage Überschrift',
+        name: 'HeroHeadline',
+        title: 'Hero Überschrift',
         type: 'string',
         group: 'content',
         }),
 
         defineField({
-        name: 'homepageText',
-        title: 'Homepage Text',
-        type: 'text',
-        rows: 5,
+        name: 'HeroSubtitle',
+        title: 'Hero Unterüberschrift',
+        type: 'string',
         group: 'content',
         }),
 
@@ -101,6 +101,13 @@ export default defineType({
         }),
 
         defineField({
+        name: 'copyright',
+        title: 'Copyright',
+        type: 'string',
+        group: 'footer',
+        }),
+
+        defineField({
         name: 'footerLinks',
         title: 'Footer Links',
         type: 'array',
@@ -108,10 +115,52 @@ export default defineType({
         of: [{ type: 'reference', to: [{ type: 'navigationLink' }] }],
         }),
 
+        
+
         defineField({
-        name: 'copyright',
-        title: 'Copyright',
+        name: 'socialLinks',
+        title: 'Social Media',
+        type: 'array',
+        of: [
+            {
+            type: 'object',
+            preview: {
+                select: {
+                title: 'platform',
+                },
+            },
+            fields: [
+                {
+                name: 'platform',
+                title: 'Plattform',
+                type: 'string',
+                options: {
+                    list: [
+                    { title: 'Instagram', value: 'instagram' },
+                    { title: 'LinkedIn', value: 'linkedin' },
+                    { title: 'Facebook', value: 'facebook' },
+                    { title: 'YouTube', value: 'youtube' },
+                    { title: 'TikTok', value: 'tiktok' },
+                    { title: 'X', value: 'x' },
+                    ],
+                },
+                },
+                {
+                name: 'url',
+                title: 'URL',
+                type: 'url',
+                },
+            ],
+            },
+        ],
+        group: 'footer',
+        }),
+
+        defineField({
+        name: 'bottomText',
+        title: 'Footer Bottom Text',
         type: 'string',
+        description: 'z.B. Made with 🌲 in Franken',
         group: 'footer',
         }),
     ],

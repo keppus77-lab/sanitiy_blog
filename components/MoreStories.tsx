@@ -6,10 +6,10 @@ import type { Post } from 'lib/sanity.queries'
 export default function MoreStories({ posts, title, description }: { posts: Post[]; title?: string; description?: string }) {
   
   return (
-    <div className='min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50 z-[999] relative'>
+    <div className='min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50 z-49 relative'>
       
        <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-3xl font-semibold"></h1>
+            
             {title && (
             <><h1 className="text-3xl font-semibold">{title}</h1>
             <p className="mt-2 text-zinc-600">{description}</p>

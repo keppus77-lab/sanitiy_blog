@@ -56,8 +56,7 @@ export default function IndexPage(props: IndexPageProps) {
           {posts.length > 0 && <MoreStories posts={posts} />}
         
       
-      <WaldarbeitBlog />
-      <AuroraHero />
+    
       </Layout>
     </>
   )

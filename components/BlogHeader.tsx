@@ -63,7 +63,7 @@ export default function BlogHeader({
       )
       case 4:
         return (
-          <section className="bg-gradient-to-r from-green-800 via-green-700 to-emerald-800 text-white py-20 relative overflow-hidden">
+          <section className="bg-linear-to-r from-green-800 via-green-700 to-emerald-800 text-white py-20 relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
             <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
             <div className="absolute bottom-10 right-10 w-96 h-96 bg-emerald-300 rounded-full blur-3xl"></div>
@@ -101,7 +101,7 @@ export default function BlogHeader({
       throw new Error(
         `Invalid level: ${
           JSON.stringify(level) || typeof level
-        }, only 1 or 2 are allowed`,
+        }, only 1, 2 or 3  are allowed`,
       )
   }
 }

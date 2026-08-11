@@ -23,8 +23,7 @@ export const schemaTypes = [
   comment,
   tags,
   navi,
-  footerSettings,
-  
+    
 
   //gallery
 ]

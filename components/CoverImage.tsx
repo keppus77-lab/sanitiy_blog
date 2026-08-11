@@ -28,7 +28,7 @@ export default function CoverImage(props: CoverImageProps) {
         sizes="100vw"
               
     style={{
-      viewTransitionName: `article_${postid}`
+      viewTransitionName: `article_${props.postid.replaceAll("-", "_")}`
     }}
       />
     </div>
@@ -39,9 +39,9 @@ export default function CoverImage(props: CoverImageProps) {
   return (
     <>
       {slug ? (
-        <Link href={slug} aria-label={title}>
+        <a href={slug} aria-label={title}>
           {image}
-        </Link>
+        </a>
       ) : (
         image
       )}

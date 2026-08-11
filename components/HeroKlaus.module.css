@@ -28,12 +28,12 @@
 }
 
 .hero{
-    --parallax-speed: 30;
+    --parallax-speed: 0;
 }
 
 .hero-title {
     --bg-size:300%;
-    --parallax-speed: 50;
+    --parallax-speed: 35;
     font-size: clamp(3rem, 12vw, 8rem);
   
 
@@ -41,22 +41,22 @@
 
 
 .hero-subtitle{
- --parallax-speed: 50;
+ --parallax-speed: -30;
 font-size: clamp(2rem, 5vw, 3rem);
 }
 
 .parallax-l1 {
-    --parallax-speed: 60;
+    --parallax-speed: 20;
 }
 
 .parallax-l2 {
-    --parallax-speed: 50;
+    --parallax-speed: 15;
 }
 .parallax-l3 {
-    --parallax-speed: 40;
+    --parallax-speed: 10;
 }
 .parallax-l4 {
-    --parallax-speed: 30;
+    --parallax-speed: 0;
 }
 
 .parallax-beam {

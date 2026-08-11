@@ -24,7 +24,7 @@ import tagsType from 'schemas/tags'
 import settingsType from 'schemas/settings'
 import naviType from 'schemas/navi'
 import pageType from 'schemas/page'
-import footerType from 'schemas/footerSettings'
+
 
 
 const title =
@@ -38,7 +38,7 @@ export default defineConfig({
   schema: {
     // If you want more content types, you can add them to this array
 
-    types: [categoryType, authorType, postType, tagsType, settingsType, naviType, footerType, pageType ],
+    types: [categoryType, authorType, postType, tagsType, settingsType, naviType, pageType ],
   },
   plugins: [
     structureTool({

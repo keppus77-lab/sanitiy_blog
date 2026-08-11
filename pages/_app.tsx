@@ -18,7 +18,7 @@ const SessionProvider = dynamic(
   { ssr: false }
 )
 
-export default function App({
+export  function App_({
   Component,
   pageProps,
 }: AppProps<SharedPageProps>) {
@@ -37,4 +37,11 @@ export default function App({
       {previewMode && <VisualEditing />}
     </SessionProvider>
   )
+}
+
+export default function App({
+  Component,
+  pageProps,
+}: AppProps<SharedPageProps>) {
+  return <Component {...pageProps} />
 }

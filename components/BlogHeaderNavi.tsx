@@ -4,25 +4,18 @@ import AuthorAvatar from "./AuthorAvatar";
 
 
 import { readToken } from 'lib/sanity.api'
-import { NavItem } from "lib/sanity.queries";
-import {getSettings, getNavi, getAllCategories, getAllTags, getAllPosts, getClient} from '../lib/sanity.client'
+import { SiteSetting } from "lib/sanity.queries";
+
+import { urlForImage } from 'lib/sanity.image'
 
 
 
- const [settings, nav, cats, tags, posts] = await Promise.all([
-    getSettings(getClient()),  
-        getNavi(getClient()),  
-    getAllCategories(getClient()),
-    getAllTags(getClient()),
-    getAllPosts(getClient()),
-    ])
 
-console.log(nav)
 
 interface HeaderProps {
-    navi: NavItem[]
-    cats: any[]
-    tags: any[]
+    nav: SiteSetting
+    cats?: any[]
+    tags?: any[]
 
 }
 
@@ -30,44 +23,34 @@ interface HeaderProps {
     
 
 
-export default function BlogHeaderNavi()  {
+export default function BlogHeaderNavi({ nav, cats, tags }: HeaderProps)  {
 
     
     return (
         <>
-            <style>{`
-            @view-transition {navigation: auto;} 
-            ::view-transition-group(*) {
-                animation-duration: 5s;
-            }
-            ::view-transition-old(*),
-            ::view-transition-new(*) {
-                animation: none;
-                mix-blend-mode: normal;
-                height: 100%;
-                overflow: clip;
-                border-radius: 2rem;
-            }
-            `}</style>
+       
         <header className="bg-white/80 backdrop-blur-lg border-b border-green-100 sticky top-0 z-50 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
                 {/* Logo */}
-                <div className="flex items-center gap-3">
+                <a href="/" className="flex items-center gap-3">
                 <div className="w-15 h-15 rounded-lg flex items-center ">
-                    <img src="/waldarbeit-logo.webp" className="rounded-full" alt="waldarbeit Logo" />
+                    
+                
+                    
+                    <img src={urlForImage(nav.logo).height(96).width(96).fit('crop').url()}  className="rounded-full" alt="waldarbeit Logo" />
                 </div>
                 <div>
-                    <h1 className="text-xl font-bold text-gray-900">Waldarbeit.Blog</h1>
-                    <p className="text-xs text-gray-600">Professionell & Nachhaltig</p>
+                    <h1 className="text-xl font-bold text-gray-900">{nav.siteTitle}</h1>
+                    <p className="text-xs text-gray-600">{nav.siteSubtitle}</p>
                 </div>
-                </div>
+                </a>
 
                 {/* Navigation */}
                 <nav className="hidden md:flex items-center gap-8">
 
                 
-                    {nav.map((link, index) => {
+                    {nav.headerLinks.map((link, index) => {
                      // Kein Link bei linkType === 'text'
                         if (link.linkType === 'text') {
                             return (
@@ -102,14 +85,14 @@ export default function BlogHeaderNavi()  {
                                         </svg>
                                         </button>
                                         
-                                            <div className="dropdown-menu absolute top-full right-0 mt-2 bg-white shadow-lg rounded-lg py-2 min-w-[220px] border border-gray-100">
+                                            <div className="dropdown-menu absolute top-full right-0 mt-2 bg-white shadow-lg rounded-lg py-2 min-w-55 border border-gray-100">
                  
                                     
                                         
                             
                                     {cats.map((cat, index) => {
                                         return(
-                                                <a key={index} href={'test'+cat.slug} className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors">
+                                                <a key={index} href={'/blog/'+cat.slug} className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors">
                                                     {cat.title}
                                                 </a>
                                         )
@@ -131,7 +114,7 @@ export default function BlogHeaderNavi()  {
                                         </svg>
                                         </button>
                                         
-                                            <div className="dropdown-menu absolute top-full right-0 mt-2 bg-white shadow-lg rounded-lg py-2 min-w-[220px] border border-gray-100">
+                                            <div className="dropdown-menu absolute top-full right-0 mt-2 bg-white shadow-lg rounded-lg py-2 min-w-55 border border-gray-100">
                                     
                                     
                                         
@@ -192,7 +175,7 @@ export default function BlogHeaderNavi()  {
         <div className="py-4 space-y-1">
           
           
-           {nav.map((link, index) => {
+           {nav.headerLinks.map((link, index) => {
                      // Kein Link bei linkType === 'text'
                         if (link.linkType === 'text') {
                             return (
@@ -203,10 +186,11 @@ export default function BlogHeaderNavi()  {
                         }
 
                         // Externe Links
-                        if (link.linkType === 'external') {
+                        if (link.linkType === 'external' || link.linkType === 'home' ) {
                         return (
                             
                             <a
+                                href={link.url}
                                 key={index}
                                 target={link.openInNewTab ? '_blank' : '_self'}
                                 rel={link.openInNewTab ? 'noopener noreferrer' : undefined}
@@ -233,7 +217,7 @@ export default function BlogHeaderNavi()  {
                                            
                                             {cats.map((cat, index) => {
                                                 return(
-                                                        <a key={index} href={'test'+cat.slug} className="block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors text-sm">
+                                                        <a key={index} href={'/blog/'+cat.slug} className="block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors text-sm">
                                                             {cat.title}
                                                         </a>
                                                 )

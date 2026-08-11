@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Post } from 'lib/sanity.queries'
 import Breadcrumb from './Breadcrumb';
 import AuthorAvatar from './AuthorAvatar';
@@ -69,6 +69,14 @@ export default function BlogDetail(prpos: { postData: Post }) {
     : null
 
     const [isBookmarked, setIsBookmarked] = useState(false);
+
+    const [currentUrl, setCurrentUrl] = useState("");
+
+
+
+useEffect(() => {
+setCurrentUrl(window.location.href);
+}, []);
 
     const formatted = new Date(postData.date).toLocaleDateString("de-DE", {
         day: "2-digit",
@@ -185,12 +193,12 @@ export default function BlogDetail(prpos: { postData: Post }) {
                     </button>
 
                     
-                   {/* <SocialShareBar className="group flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105"
-                            url={window.location.href}
+                    <SocialShareBar className="group flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105"
+                            url={currentUrl}
                             title={postData.title}
                             description={postData.excerpt}
                         />
-                        */}
+                        
 
                     <button onClick={handlePrint} className="flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,7 +221,7 @@ export default function BlogDetail(prpos: { postData: Post }) {
             sizes="100vw"
             title={postData.title} 
             style={{
-                viewTransitionName: `article_${postData._id}`,
+                viewTransitionName: `article_${postData._id.replaceAll("-", "_")}`,
                 }}
         
         />

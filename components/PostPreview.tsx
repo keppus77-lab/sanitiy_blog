@@ -35,7 +35,7 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
           >
           {/* Image Placeholder */}
           <div className="bg-linear-to-br from-green-600 to-emerald-700  text-7xl overflow-hidden">
-              <CoverImage title={postData.title} slug={`/blog/${postData.category?.slug}/${postData.slug}`} postid={postData._id} image={postData.coverImage} priority={false}
+              <CoverImage title={postData.title} slug={`/blog/${postData.category?.slug}/${postData.slug}`} postid={postData._id.replaceAll("-", "_")} image={postData.coverImage} priority={false}
               />
           </div>
 
@@ -51,7 +51,7 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
 
               {/* Title */}
               <h2 className="text-xl font-bold text-gray-900 mb-3 leading-tight hover:text-green-700 cursor-pointer transition-colors">
-              <Link href={`/blog/${postData.category?.slug}/${postData.slug}`} >{postData.title}</Link>
+              <a aria-label={postData.title} href={`/blog/${postData.category?.slug}/${postData.slug}`} >{postData.title}</a>
               </h2>
 
               {/* Excerpt 

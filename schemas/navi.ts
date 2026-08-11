@@ -20,16 +20,7 @@ export default defineType({
             validation: (Rule) => Rule.required(),
             description: 'Angezeigter Text des Links',
         }),
-        defineField({
-            name: 'slug',
-            title: 'Slug',
-            type: 'slug',
-            options: {
-                source: 'title',
-                maxLength: 96,
-            },
-            validation: (Rule) => Rule.required(),
-        }),
+        
         defineField({
             name: 'linkType',
             title: 'Link-Typ',
@@ -42,7 +33,7 @@ export default defineType({
                 {title: 'Seite', value: 'page'},
                 {title: 'Externe URL', value: 'external'},
                 {title: 'Nur Text (kein Link)', value: 'text'},
-                {title: 'Link aud die Home', value: 'home'},            
+                {title: 'Link auf die Home', value: 'home'},            
             ],
                 layout: 'radio',
             },

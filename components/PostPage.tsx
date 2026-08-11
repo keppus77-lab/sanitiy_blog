@@ -25,7 +25,7 @@ export interface PostPageProps {
 
 const NO_POSTS: Post[] = []
 
-export default function PostPage(props: PostPageProps) {
+export  function PostPage__(props: PostPageProps) {
   const { preview, loading, morePosts = NO_POSTS, post, settings } = props
   const { title = demo.title } = settings || {}
 
@@ -57,6 +57,32 @@ export default function PostPage(props: PostPageProps) {
           )}
         
       </Layout>
+    </>
+  )
+}
+
+
+export default function PostPage(props: PostPageProps) {
+   const { preview, loading, morePosts = NO_POSTS, post, settings } = props
+  const { title = demo.title } = settings || {}
+
+  const slug = post?.slug
+
+  if (!slug && !preview) {
+    return <Error statusCode={404} />
+  }
+  
+  return (
+    <>
+     <Layout preview={preview} loading={loading}>
+       
+      
+      <PostPageHead settings={props.settings} post={props.post} />
+   
+   <BlogDetail postData={post} />
+     {morePosts?.length > 0 && <MoreStories posts={morePosts} title="Weitere Beiträge" />}
+            
+    </Layout>
     </>
   )
 }
