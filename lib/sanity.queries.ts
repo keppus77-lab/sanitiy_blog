@@ -9,7 +9,7 @@ const postFields = groq`
   coverImage,
   subtitle,
   "slug": slug.current,
-  "author": author->{name, picture},
+  "author": author->{name, picture, role},
   "category": category->{title, "slug": slug.current},
   "tags": tags[]->{
     title,
@@ -51,6 +51,7 @@ export const postBySlugQuery = groq`
 
 export interface Author {
   name?: string
+  role?: string
   picture?: any
 }
 
@@ -147,20 +148,9 @@ export async function getCategoryPage(categorySlug: string, page: number, pageSi
       || $categorySlug in categories[]->slug.current
       )]
         | order(date desc)[$start...$end]{
-          _id,
-          title,
-          "slug": slug.current,
-          excerpt,
-          date,
-          coverImage,
-          "category": category->{
-             title,
-            "slug": slug.current
-            },
-            "tags": tags[]->{
-              title,
-              "slug": slug.current
-            }
+          ${postFields}
+         
+           
         }
     }`,
     { categorySlug, start, end }
@@ -181,20 +171,7 @@ export async function getTagPage(tagSlug: string, page: number, pageSize: number
     },
     "posts": *[_type == "post" && $tagSlug in tags[]->slug.current]
       | order(date desc) [${start}...${end}] {
-        _id,
-        title,
-        "slug": slug.current,
-        excerpt,
-        date,
-        coverImage,
-        "category": category->{
-          title,
-          "slug": slug.current
-        },
-        "tags": tags[]->{
-          title,
-          "slug": slug.current
-        }
+        ${postFields}
       },
     "total": count(*[_type == "post" && $tagSlug in tags[]->slug.current])
     }`,
@@ -248,8 +225,9 @@ export const headerLinks = groq`
         ""
         ),
     openInNewTab,
-    socialLinks
-  }
+    
+  },
+  socialLinks
   
  
 }

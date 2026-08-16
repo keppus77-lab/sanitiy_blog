@@ -4,6 +4,7 @@
 @view-transition {navigation: auto;} 
 
 
+
 @theme {
   --color-accent-1: #fafafa;
   --color-accent-2: #eaeaea;
@@ -50,11 +51,12 @@
 
 
 
-
-
 @layer utilities {
+
+
+
 ::view-transition-group(*) {
-  animation-duration: 55ms;
+  animation-duration: 550ms;
   animation-timing-function: cubic-bezier(.16, 1, .3, 1);
 }
 
@@ -64,7 +66,10 @@
   overflow: clip;
   border-radius: 16px;
 }
-  
+
+
+
+
 
           
 

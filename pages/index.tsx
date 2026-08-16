@@ -1,3 +1,4 @@
+import Layout from 'app/layout'
 import IndexPage from 'components/IndexPage'
 import PreviewIndexPage from 'components/PreviewIndexPage'
 import { readToken } from 'lib/sanity.api'
@@ -10,6 +11,7 @@ import type { SharedPageProps } from 'pages/_app'
 interface PageProps extends SharedPageProps {
   posts: Post[]
   settings: Settings
+  previewMode: boolean
 }
 
 interface Query {
@@ -24,9 +26,9 @@ export default function Page(props: PageProps) {
   }
 
   return (
-    <main>
+    
       <IndexPage posts={posts} settings={settings} />
-    </main>
+    
   )
 }
 
@@ -35,6 +37,8 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const client = getClient(
     previewMode ? { token: readToken, perspective: previewData } : undefined,
   )
+
+
   const [settings, nav, categories, tags, posts] = await Promise.all([
     getSettings(client),
     getNavi(client),    

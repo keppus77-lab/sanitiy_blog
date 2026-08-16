@@ -1,9 +1,23 @@
 import { urlForImage } from "lib/sanity.image";
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, JSX } from "react";
+import { FaYoutube,FaFacebookF,FaXTwitter,FaXing,FaLinkedinIn,FaInstagram,FaTiktok} from "react-icons/fa6";
+
+const socialIcons: Record<string,  { icon: JSX.Element;  color: string;  }> = {
+    youtube: { icon: <FaYoutube className="text-xl h-6 w-6" />,  color: "bg-red-600",  },
+    facebook: { icon: <FaFacebookF className="text-xl h-6 w-6" />,  color: "bg-blue-600",  },
+    x: {  icon: <FaXTwitter className="text-xl h-6 w-6" />,  color: "bg-black",  },
+    xing: {  icon: <FaXing className="text-xl h-6 w-6" />,  color: "bg-green-600",  },
+    linkedin: {  icon: <FaLinkedinIn className="text-xl h-6 w-6" />,  color: "bg-[#0A66C2]",  },
+    instagram: {  icon: <FaInstagram className="text-xl h-6 w-6" />,  color: "bg-pink-500",  },
+    tiktok: {  icon: <FaTiktok className="text-xl h-6 w-6" />,  color: "bg-cyan-500",  },
+};
+
 
 export default function Footer({ settings }: any)  {
 
-   console.log(settings) 
+
+
+   
 return (
     
     
@@ -14,9 +28,7 @@ return (
                 {/* Brand */}
                 <div className="col-span-1 md:col-span-2">
                 <div className="flex items-center gap-3 mb-4">
-                    
-                     <img src={urlForImage(settings?.logo).height(50).width(50).fit('crop').url()}  className="rounded-full" alt={settings?.siteTitle+" Logo"}  />
-                    
+                    <img src={urlForImage(settings?.logo).height(50).width(50).fit('crop').url()}  className="rounded-full" alt={settings?.siteTitle+" Logo"}  />
                     <span className="text-white font-bold text-lg">{settings?.siteTitle}</span>
                 </div>
                 <div className="text-sm leading-relaxed mb-4">
@@ -52,20 +64,25 @@ return (
 
                 {/* Social */}
                 <div>
-                <h3 className="text-white font-semibold mb-4">Folge uns</h3>
+                <h3 className="text-white font-semibold mb-4">Folge mir</h3>
                 <div className="flex gap-3">
- 
+                    {settings?.socialLinks?.map((link: { _key: string; platform: string;  url: string}, index: any) => {
+                        const Icon = socialIcons[link.platform.toLowerCase()].icon;
+                        const Color = socialIcons[link.platform.toLowerCase()].color;
+                     return(
+                       <a
+                        key={link._key}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={link.platform}
+                        className={`group  flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 ${Color} text-white shadow-lg transition-all duration-300 hover:border-green-500 hover:text-green-500 hover:shadow-green-500/20  hover:scale-110`}
+                        >          
+                            {Icon}
+                        </a>
+                    )
+                    })}
 
-
-                    <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors">
-                    <span className="text-lg">📱</span>
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors">
-                    <span className="text-lg">🐦</span>
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors">
-                    <span className="text-lg">📺</span>
-                    </a>
                 </div>
                 </div>
             </div>

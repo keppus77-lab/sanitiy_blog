@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getTagPage } from '../../../lib/sanity.queries'
-import  MoreStories  from '../../../components/MoreStories'
-import CategoryPager from '../../../components/CategoryPager'
+import { getTagPage } from 'lib/sanity.queries'
+import  MoreStories  from 'components/MoreStories'
+import CategoryPager from 'components/CategoryPager'
+import Layout from 'components/BlogLayout'
 
 const PAGE_SIZE = 10
 
@@ -49,9 +50,9 @@ export default function TagPage(
     const { tags, posts, page, totalPages, tagSlug } = props
 
     return (
-        <>
+        <Layout>
         <MoreStories posts={posts} title={`# ${tags.title}`} />
             <CategoryPager actpage={page} totalPages={totalPages} categorySlug={tagSlug}  />
-        </>
+        </Layout>
     )
 }

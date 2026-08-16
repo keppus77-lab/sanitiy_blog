@@ -1,8 +1,12 @@
 import Link from 'next/link'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getCategoryPage } from '../../../lib/sanity.queries'
-import  MoreStories  from '../../../components/MoreStories'
-import CategoryPager from '../../../components/CategoryPager'
+import { getCategoryPage, Post } from 'lib/sanity.queries'
+import  MoreStories  from 'components/MoreStories'
+import CategoryPager from 'components/CategoryPager'
+import Layout from 'components/BlogLayout'
+
+
+import { SharedPageProps } from 'pages/_app'
 
 const PAGE_SIZE = 10
 
@@ -41,17 +45,23 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
 }
 
+
+
+
 export default function CategoryPage(
     props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
     
     const { category, posts, page, totalPages, categorySlug } = props
-
+console.log(posts);
     return (
-        <>
+        
+        <Layout >
         <MoreStories posts={posts} title={category.title}   />
-         {/* Pager */}
+        
         <CategoryPager actpage={page} totalPages={totalPages} categorySlug={categorySlug} />
-      </>
+        </Layout>
+        
+      
     )
 }

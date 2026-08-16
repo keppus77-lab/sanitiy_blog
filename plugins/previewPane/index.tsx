@@ -44,6 +44,7 @@ export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
               <AuthorAvatarPreviewPane
                 name={document.displayed.name as any}
                 picture={document.displayed.picture as any}
+                role=""
               />
             ))
             .title('Preview'),

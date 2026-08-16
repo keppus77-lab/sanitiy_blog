@@ -13,7 +13,13 @@ export default function CategoryPager(
 ) {
     const { actpage, totalPages, categorySlug } = props
     return (
-    <nav className="mt-10 flex items-center justify-between">
+
+        <div className="bg-linear-to-br from-slate-50 via-green-50 to-emerald-50 ">
+         <section className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  bg-linear-to-br from-slate-50 via-green-50 to-emerald-50 pb-10 '>
+      
+      
+      
+    <nav className="flex items-center justify-between">
             <Link
             className={`rounded-md border px-3 py-2 text-sm ${actpage <= 1 ? 'pointer-events-none opacity-50' : ''}`}
             href={`/${categorySlug}?page=${actpage - 1}`}
@@ -32,6 +38,7 @@ export default function CategoryPager(
             Weiter
             </Link>
         </nav>
-    
+    </section>
+    </div>
     )
 }

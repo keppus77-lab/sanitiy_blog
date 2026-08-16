@@ -7,6 +7,9 @@ import { readToken } from 'lib/sanity.api'
 import { SiteSetting } from "lib/sanity.queries";
 
 import { urlForImage } from 'lib/sanity.image'
+import Search from "./Search";
+import HeaderSearch from "./HeaderSearch" ;
+import { useEffect, useState } from "react";
 
 
 
@@ -20,16 +23,49 @@ interface HeaderProps {
 }
 
 
-    
 
+export function useHideHeader() {
+    const [visible, setVisible] = useState(true);
+
+    useEffect(() => {
+        let lastScrollY = window.scrollY;
+
+        const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+
+        // Immer anzeigen, wenn man ganz oben ist
+        if (currentScrollY < 160) {
+            setVisible(true);
+        } else {
+            setVisible(currentScrollY < lastScrollY);
+        }
+
+        lastScrollY = currentScrollY;
+        };
+
+        window.addEventListener("scroll", handleScroll, {
+        passive: true,
+        });
+
+        return () => {
+        window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    return visible;
+}
 
 export default function BlogHeaderNavi({ nav, cats, tags }: HeaderProps)  {
+const [scrolled, setScrolled] = useState(false);
 
-    
+const visible = useHideHeader();
+
     return (
         <>
        
-        <header className="bg-white/80 backdrop-blur-lg border-b border-green-100 sticky top-0 z-50 shadow-sm">
+        <header className={`bg-white/80 backdrop-blur-lg border-b border-green-100 sticky top-0 z-50 shadow-sm transition-transform duration-300
+${visible ? "translate-y-0" : "-translate-y-full"}
+`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
                 {/* Logo */}
@@ -45,11 +81,12 @@ export default function BlogHeaderNavi({ nav, cats, tags }: HeaderProps)  {
                     <p className="text-xs text-gray-600">{nav.siteSubtitle}</p>
                 </div>
                 </a>
+                
 
                 {/* Navigation */}
                 <nav className="hidden md:flex items-center gap-8">
 
-                
+                    <HeaderSearch/>
                     {nav.headerLinks.map((link, index) => {
                      // Kein Link bei linkType === 'text'
                         if (link.linkType === 'text') {
@@ -86,7 +123,6 @@ export default function BlogHeaderNavi({ nav, cats, tags }: HeaderProps)  {
                                         </button>
                                         
                                             <div className="dropdown-menu absolute top-full right-0 mt-2 bg-white shadow-lg rounded-lg py-2 min-w-55 border border-gray-100">
-                 
                                     
                                         
                             
@@ -145,7 +181,6 @@ export default function BlogHeaderNavi({ nav, cats, tags }: HeaderProps)  {
                         )
                     })}
                         
-                     
         
                     
                 </nav>
@@ -167,15 +202,13 @@ export default function BlogHeaderNavi({ nav, cats, tags }: HeaderProps)  {
                     </label> 
                 </button>
                 
-           
 
 
         
         <nav id="mobileMenu" className="bg-white shadow-md absolute w-full left-0 max-h-0 md:hidden border-t border-gray-200 overflow-hidden opacity-0 transition-all duration-300 peer-checked:max-h-1000 peer-checked:opacity-100">
         <div className="py-4 space-y-1">
-          
-          
-           {nav.headerLinks.map((link, index) => {
+
+        {nav.headerLinks.map((link, index) => {
                      // Kein Link bei linkType === 'text'
                         if (link.linkType === 'text') {
                             return (
@@ -205,7 +238,7 @@ export default function BlogHeaderNavi({ nav, cats, tags }: HeaderProps)  {
                             return (
                                 <div key={index} className="group/cat relative">
                                     <input type="checkbox" className="peer hidden" id="cb-cat"></input>
-                                         <button className="w-full">
+                                        <button className="w-full">
                                             <label className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors font-medium" htmlFor="cb-cat">{link.title}
                                                 <svg className="w-5 h-5 transition-transform group-has-checked/cat:rotate-180" id="tagDropdownIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -214,7 +247,6 @@ export default function BlogHeaderNavi({ nav, cats, tags }: HeaderProps)  {
                                         </button>
                                         
                                         <div id="kategorienDropdown" className="pl-4 space-y-1 hidden peer-checked:block">
-                                           
                                             {cats.map((cat, index) => {
                                                 return(
                                                         <a key={index} href={'/blog/'+cat.slug} className="block px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-700 rounded-md transition-colors text-sm">

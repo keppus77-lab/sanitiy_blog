@@ -100,7 +100,7 @@ export default function HomepageHero(props) {
                     </div>
                     <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-white/20 backdrop-blur-lg rounded-2xl flex items-center justify-center shadow-xl animate-bounce" style={{ animationDelay: '1s', animationDuration: '3s' }}>
                         <span className="text-5xl">
-                            {author && <Avatar picture={author.picture} />}
+                            {author && <Avatar picture={author.picture} role={author.role} />}
                             
                             </span>
                     </div>

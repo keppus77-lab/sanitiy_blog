@@ -84,9 +84,49 @@ setCurrentUrl(window.location.href);
         year: "numeric",
         })
      
+
+
+
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${postData.category.slug}/${postData.slug}`;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: postData.title,
+    description: postData.excerpt,
+    image: [urlForImage(postData.coverImage).height(1000).width(2000).url()],
+    datePublished: postData.date,
+    dateModified: postData.date ?? postData.date,
+    author: {
+        "@type": "Person",
+        name: postData.author.name,
+        url: urlForImage(postData.author.picture).height(1000).width(2000).url(),
+      
+    },
+    publisher: {
+        "@type": "Organization",
+        name: "Firma",
+        logo: {
+            "@type": "ImageObject",
+            url: `${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`,
+        },
+    },
+    mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": url,
+    },
+};
+
     return (
         <>
 
+    <script
+        id="blog-post-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema),
+        }}
+        />
 
         <div className="min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50">
         {/* Header/Navigation */}
@@ -123,11 +163,11 @@ setCurrentUrl(window.location.href);
                     {/* Author */}
                     <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-linear-to-br from-green-600 to-emerald-700 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-lg">
-                        <AuthorAvatar picture={postData.author.picture}  />  
+                        <AuthorAvatar picture={postData.author.picture} name={postData.author.name} role={''} />  
                     </div>
                     <div>
                         <p className="font-semibold text-gray-900">{postData.author.name}</p>
-                        <p className="text-sm text-gray-600">Forstexperte & Autor</p>
+                        <p className="text-sm text-gray-600">{postData.author.role}</p>
                     </div>
                     </div>
 
@@ -220,6 +260,7 @@ setCurrentUrl(window.location.href);
             src={urlForImage(postData.coverImage).height(1000).width(2000).url()}
             sizes="100vw"
             title={postData.title} 
+            alt={postData.title} 
             style={{
                 viewTransitionName: `article_${postData._id.replaceAll("-", "_")}`,
                 }}

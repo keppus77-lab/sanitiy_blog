@@ -34,7 +34,7 @@ export default function HeroPost(
             </p>
           )}
           {author && (
-            <AuthorAvatar name={author.name} picture={author.picture} />
+            <AuthorAvatar name={author.name} role={author.role} picture={author.picture} />
           )}
         </div>
       </div>
