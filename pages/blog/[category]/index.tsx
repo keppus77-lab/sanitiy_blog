@@ -8,7 +8,7 @@ import Layout from 'components/BlogLayout'
 
 import { SharedPageProps } from 'pages/_app'
 
-const PAGE_SIZE = 10
+const PAGE_SIZE = 24
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const categorySlug = ctx.params?.category as string | undefined
@@ -53,7 +53,7 @@ export default function CategoryPage(
 ) {
     
     const { category, posts, page, totalPages, categorySlug } = props
-console.log(posts);
+
     return (
         
         <Layout >

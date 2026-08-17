@@ -113,9 +113,7 @@ export default defineType({
         type: 'array',
         group: 'footer',
         of: [{ type: 'reference', to: [{ type: 'navigationLink' }] }],
-        }),
-
-        
+        }),       
 
         defineField({
         name: 'socialLinks',

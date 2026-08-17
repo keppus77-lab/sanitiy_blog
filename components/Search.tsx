@@ -59,7 +59,7 @@ type SearchResult = {
             Suche läuft...
             </p>
         )}
-alert(result)
+
         {results.length > 0 && (
             <div className="mt-4 space-y-3">
             {results.map((item) => (

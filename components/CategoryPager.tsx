@@ -22,7 +22,7 @@ export default function CategoryPager(
     <nav className="flex items-center justify-between">
             <Link
             className={`rounded-md border px-3 py-2 text-sm ${actpage <= 1 ? 'pointer-events-none opacity-50' : ''}`}
-            href={`/${categorySlug}?page=${actpage - 1}`}
+            href={`/blog/${categorySlug}?page=${actpage - 1}`}
             >
             Zurück
             </Link>
@@ -33,7 +33,7 @@ export default function CategoryPager(
 
             <Link
             className={`rounded-md border px-3 py-2 text-sm ${actpage >= totalPages ? 'pointer-events-none opacity-50' : ''}`}
-            href={`/${categorySlug}?page=${actpage + 1}`}
+            href={`/blog/${categorySlug}?page=${actpage + 1}`}
             >
             Weiter
             </Link>
