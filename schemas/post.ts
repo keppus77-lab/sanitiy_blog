@@ -75,14 +75,28 @@ export default defineType({
       rows: 4
     }),
     defineField({
-      name: 'content',
-      title: 'Inhalt',
-      type: 'array',
-      of: [
+  name: 'content',
+  type: 'array',
+  of: [
+    {
+      type: 'block'
+    },
+    {
+      type: 'object',
+      name: 'htmlBlock',
+      _key: 'html_1',
+      title: 'HTML Block',
+      fields: [
         {
-          type: 'block'
-        },
-        {
+          name: 'html',
+          type: 'text',
+          title: 'HTML'
+        }
+      ]
+    },
+  
+
+      {
           type: 'image',
           options: {
             hotspot: true

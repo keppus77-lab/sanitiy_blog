@@ -1,12 +1,9 @@
 import PostPage from 'components/PostPage'
 import PreviewPostPage from 'components/PreviewPostPage'
 import { readToken } from 'lib/sanity.api'
-import {
-  getAllPostsSlugs,
-  getClient,
-  getPostAndMoreStories,
-  getSettings,
-} from 'lib/sanity.client'
+import { getClient } from 'lib/sanity.client'
+import { getAllPostsSlugs, getPostAndMoreStories, getSettings } from 'lib/sanity.fetch'
+
 import { Post, Settings } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import type { SharedPageProps } from 'pages/_app'

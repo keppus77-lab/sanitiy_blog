@@ -1,4 +1,5 @@
 import groq from 'groq'
+import { client } from 'lib/sanity.client'
 
 const postFields = groq`
   _id,
@@ -130,7 +131,7 @@ export interface Settings {
   `;
 
   // lib/sanity.category.ts (oder wo du Queries sammelst)
-import { client } from './sanity.client'
+
 
 export async function getCategoryPage(categorySlug: string, page: number, pageSize: number) {
   const start = (page - 1) * pageSize

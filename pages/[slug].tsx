@@ -1,9 +1,10 @@
 import {GetStaticPaths, GetStaticProps} from 'next'
 import {groq} from 'next-sanity'
 
-import { getAllPosts, getClient, getSettings } from '../lib/sanity.client'
+
 import {PortableText} from '@portabletext/react'
 import Head from 'next/head'
+import { getClient } from 'lib/sanity.client'
 
 interface Page {
   _id: string

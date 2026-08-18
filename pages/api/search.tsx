@@ -1,7 +1,8 @@
 // pages/api/search.ts
 
+import { client } from 'lib/sanity.client';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { client } from '../../lib/sanity.client';
+
 
 export default async function handler(
   req: NextApiRequest,

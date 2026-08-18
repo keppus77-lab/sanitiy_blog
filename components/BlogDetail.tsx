@@ -19,8 +19,19 @@ const myPortableTextComponents: Partial<PortableTextReactComponents> = {
         image: ({ value }) => {
         return <SanityImage {...value} />
         },
+
+        htmlBlock: ({ value }) => {
+        return (
+            <div
+            dangerouslySetInnerHTML={{
+                __html: value.html,
+            }}
+            />
+        )
+        },
     },
 }
+
 
 function countWordsPortableText(content: any[]): number {
     
@@ -321,6 +332,8 @@ setCurrentUrl(window.location.href);
 
                 {/* Placeholder for Article Content */}
                 <div id="content" className="prose prose-lg max-w-none">
+
+  
                     {portableContent && (
                     <PortableText
                         value={portableContent}

@@ -1,8 +1,14 @@
 import AlertBanner from 'components/AlertBanner'
 import Footer from './Footer'
 import BlogHeaderNavi from './BlogHeaderNavi'
-import { getNavi, getAllCategories, getAllTags, getClient} from '../lib/sanity.client'
- const [ nav, cats, tags] = await Promise.all([
+import { getClient } from 'lib/sanity.client'
+import {
+  getNavi,
+  getAllCategories,
+  getAllTags
+} from '../lib/sanity.fetch'
+
+const [ nav, cats, tags] = await Promise.all([
     
         getNavi(getClient()),  
     getAllCategories(getClient()),
