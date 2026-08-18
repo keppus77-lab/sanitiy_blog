@@ -17,7 +17,7 @@ type SearchResult = {
     category: Category
 }
 
-export default function HeaderSearch() {
+export default function HeaderSearch({ mobile }: { mobile: string }) {
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState('')
     const [results, setResults] = useState<SearchResult[]>([])
@@ -59,6 +59,7 @@ export default function HeaderSearch() {
                     flex items-center overflow-hidden
                     transition-all duration-300 ease-in-out
                     ${open ? "w-55 sm:w-70 opacity-100" : "w-0 opacity-0"}
+                    ${mobile ? "w-full opacity-100 p-4" : "w-0 opacity-0"}
                 `}
             >
                 <input
@@ -74,7 +75,7 @@ export default function HeaderSearch() {
                 />
         
 
-                <button
+                <button id="closebutton"
                     onClick={() => setOpen(false)}
                     className="absolute right-3 text-gray-400 hover:text-gray-700"
                     >
@@ -83,7 +84,7 @@ export default function HeaderSearch() {
     </div>
 
 
-    {!open && (
+    {!open && !mobile && (
         <button
         onClick={() => setOpen(true)}
         className="
@@ -100,7 +101,7 @@ export default function HeaderSearch() {
     )}
     </div>
     {results.length > 0 && (
-            <div className="text-sm text-gray-500d ropdown-menu absolute  mt-2 bg-white shadow-lg rounded-lg p-4 min-w-55 border border-gray-100">
+            <div className={`text-sm text-gray-500d ropdown-menu absolute  mt-2 bg-white shadow-lg rounded-lg p-4 min-w-55 border border-gray-100 ${mobile ? "w-full z-99" : ""}`}>
             {results.map((item) => (
                 <a     href={`/blog/${item.category.slug}/${item.slug}`}
                 key={item._id}
@@ -123,4 +124,4 @@ export default function HeaderSearch() {
     </div>
     
   );
-}
+} 

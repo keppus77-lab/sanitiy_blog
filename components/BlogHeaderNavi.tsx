@@ -151,10 +151,7 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
                                         </button>
                                         
                                             <div className="dropdown-menu absolute top-full right-0 mt-2 bg-white shadow-lg rounded-lg py-2 min-w-55 border border-gray-100">
-                                    
-                                    
-                                        
-                            
+
                                     {tags.map((tag, index) => {
                                         return(
                                                 <a key={index} href={'/tag/'+tag.slug} className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors">
@@ -208,6 +205,7 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
         <nav id="mobileMenu" className="bg-white shadow-md absolute w-full left-0 max-h-0 md:hidden border-t border-gray-200 overflow-hidden opacity-0 transition-all duration-300 peer-checked:max-h-1000 peer-checked:opacity-100">
         <div className="py-4 space-y-1">
 
+<HeaderSearch mobile="true" />
         {nav.headerLinks.map((link, index) => {
                      // Kein Link bei linkType === 'text'
                         if (link.linkType === 'text') {

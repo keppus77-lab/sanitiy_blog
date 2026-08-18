@@ -53,7 +53,7 @@
 
 @layer utilities {
 
-
+.opacity-0 #closebutton{display:none;}
 
 ::view-transition-group(*) {
   animation-duration: 550ms;
