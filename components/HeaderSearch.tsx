@@ -17,7 +17,7 @@ type SearchResult = {
     category: Category
 }
 
-export default function HeaderSearch({ mobile }: { mobile: string }) {
+export default function HeaderSearch({ mobile }: { mobile?: string }) {
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState('')
     const [results, setResults] = useState<SearchResult[]>([])

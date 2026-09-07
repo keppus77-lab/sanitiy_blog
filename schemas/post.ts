@@ -84,11 +84,12 @@ export default defineType({
     {
       type: 'object',
       name: 'htmlBlock',
-      _key: 'html_1',
+      
       title: 'HTML Block',
       fields: [
         {
           name: 'html',
+          
           type: 'text',
           title: 'HTML'
         }

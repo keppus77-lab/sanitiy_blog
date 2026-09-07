@@ -5,9 +5,8 @@ import {
   studioUrl,
   useCdn,
 } from 'lib/sanity.api'
-import {
-  type NavItem  
-} from 'lib/sanity.queries'
+
+
 
 import type { PreviewData } from 'next'
 import { createClient, type SanityClient } from 'next-sanity'
