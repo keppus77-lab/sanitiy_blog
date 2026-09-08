@@ -120,7 +120,10 @@ async function readBody(readable: NextApiRequest): Promise<string> {
   return Buffer.concat(chunks).toString('utf8')
 }
 
-type StaleRoute = '/' | `/posts/${string}`
+
+type StaleRoute =
+  | '/'
+  | `/blog/${string}/${string}`
 
 async function queryStaleRoutes(
   body: Pick<
@@ -136,7 +139,7 @@ async function queryStaleRoutes(
     if (!exists) {
       const staleRoutes: StaleRoute[] = ['/']
       if ((body.slug as any)?.current) {
-        staleRoutes.push(`/posts/${(body.slug as any).current}`)
+        staleRoutes.push(`/blog/${(body.slug as any).current}`)
       }
       // Assume that the post document was deleted. Query the datetime used to sort "More stories" to determine if the post was in the list.
       const moreStories = await client.fetch(
@@ -165,14 +168,27 @@ async function queryStaleRoutes(
   }
 }
 
-async function _queryAllRoutes(client: SanityClient): Promise<string[]> {
-  return await client.fetch(groq`*[_type == "post"].slug.current`)
+async function _queryAllRoutes(client: SanityClient) {
+  return await client.fetch(
+    groq`
+    *[_type == "post"]{
+      "slug": slug.current,
+      "category": category->slug.current
+    }
+    `
+  )
 }
 
 async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {
   const slugs = await _queryAllRoutes(client)
 
-  return ['/', ...slugs.map((slug) => `/posts/${slug}` as StaleRoute)]
+ return [
+  '/',
+  ...slugs.map(
+    (post) =>
+      `/blog/${post.category}/${post.slug}` as StaleRoute
+  ),
+]
 }
 
 async function mergeWithMoreStories(
@@ -213,12 +229,22 @@ async function queryStalePostRoutes(
   client: SanityClient,
   id: string,
 ): Promise<StaleRoute[]> {
-  let slugs = await client.fetch(
-    groq`*[_type == "post" && _id == $id].slug.current`,
-    { id },
-  )
+const posts = await client.fetch(
+  groq`
+  *[_type == "post" && _id == $id]{
+    "slug": slug.current,
+    "category": category->slug.current
+  }
+  `,
+  { id },
+)
 
-  slugs = await mergeWithMoreStories(client, slugs)
+return [
+  '/',
+  ...posts.map(
+    (post) => `/blog/${post.category}/${post.slug}`
+  ),
+]
 
-  return ['/', ...slugs.map((slug) => `/blog/${slug}`)]
+  
 }
