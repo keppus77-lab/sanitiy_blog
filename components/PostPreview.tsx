@@ -28,14 +28,15 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
 
         
   return (
-    <>
+    <div className="grid gap-0 card-wrapper">
     
       <article
           key={postData._id}
-          className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100
+          className="card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100
           grid grid-rows-subgrid row-span-6 gap-0
           "
           >
+          
           {/* Image Placeholder */}
           <div className="bg-linear-to-br from-green-600 to-emerald-700  text-7xl overflow-hidden">
               <CoverImage title={postData.title} slug={`/blog/${postData.category?.slug}/${postData.slug}`} postid={postData._id.replaceAll("-", "_")} image={postData.coverImage} priority={false}
@@ -89,6 +90,7 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
               </div>
           
       </article>
-    </>
+      
+    </div>
   )
 }
