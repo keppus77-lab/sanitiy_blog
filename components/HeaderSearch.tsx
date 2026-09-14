@@ -54,14 +54,7 @@ export default function HeaderSearch({ mobile }: { mobile?: string }) {
         <div>
         <div className="relative flex items-center">
         
-            <div
-                className={`
-                    flex items-center overflow-hidden
-                    transition-all duration-300 ease-in-out
-                    ${open ? "w-55 sm:w-70 opacity-100" : "w-0 opacity-0"}
-                    ${mobile ? "w-full opacity-100 p-4" : "w-0 opacity-0"}
-                `}
-            >
+            <div className={`flex items-center overflow-hidden transition-all duration-300 ease-in-out ${open ? "w-55 sm:w-70 opacity-100" : "w-0 opacity-0"} ${mobile ? "w-full opacity-100 p-4" : "w-0 opacity-0"}`}>
                 <input
                     type="text"
                     placeholder="Suchen..."
