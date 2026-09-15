@@ -1,25 +1,51 @@
 import AuthorAvatar from 'components/AuthorAvatar'
 import CoverImage from 'components/CoverImage'
-
+import { toPlainText } from '@portabletext/toolkit'
 import type { Post } from 'lib/sanity.queries'
 import Link from 'next/link'
 
-function calculateReadingTime2(text: string): number {
-  const wordsPerMinute = 200; // Durchschnittliche Lesegeschwindigkeit
-   if (!text || typeof text !== 'string') {
-    return 0;
-  }
-  const words = text.trim().split(/\s+/).length;
-  const minutes = Math.ceil(words / wordsPerMinute);
-  return minutes;
+
+function countWordsPortableText(content: any[]): number {
+    
+    const allText = (content ?? [])  
+    .flatMap((b) => (b?._type === "block" ? b.children ?? [] : [])) 
+        .map((c) => c?.text ?? "")
+        .join(" ")
+        .trim();
+        
+
+    if (!allText) return 0;
+    return allText.split(/\s+/).length;
+
+}
+
+function calculateReadingTime(text: any): number {
+    const wordsPerMinute = 200; // Durchschnittliche Lesegeschwindigkeit
+
+    let words = 0;
+    if (Array.isArray(text)) {
+        words = countWordsPortableText(text);
+    } else if (typeof text === 'string') {
+        const all = text.trim();
+        words = all ? all.split(/\s+/).filter(Boolean).length : 0;
+    }
+
+    const minutes = Math.ceil(words / wordsPerMinute);
+    return minutes;
 }
 
 
 
 export default function PostPreview(prpos: { postData: Post; category: string  }) {
   const { postData } = prpos
+
+  
+
   const isStringContent = typeof postData.content === 'string';
-  const readingTime = calculateReadingTime2(isStringContent ?  postData.content : postData.excerpt || '');
+  const plainText = isStringContent ? postData.content : toPlainText(postData.content as any);
+  //const plainText = "test"
+  const readingTime = calculateReadingTime(isStringContent ? plainText : postData.content);
+  //const readingTime = "test2";
   const formatted = new Date(postData.date).toLocaleDateString("de-DE", {
         day: "2-digit",
         month: "long",
