@@ -43,9 +43,9 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
 
   const isStringContent = typeof postData.content === 'string';
   const plainText = isStringContent ? postData.content : toPlainText(postData.content as any);
-  //const plainText = "test"
+  
   const readingTime = calculateReadingTime(isStringContent ? plainText : postData.content);
-  //const readingTime = "test2";
+  
   const formatted = new Date(postData.date).toLocaleDateString("de-DE", {
         day: "2-digit",
         month: "long",
