@@ -18,9 +18,9 @@ export default function MoreStories({ posts, title, description }: { posts: Post
             )}
         </header>
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="portfolio grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="portfolio grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
-        {posts.map((post) => (
+          {posts.map((post) => (
           
           <PostPreview
             key={post._id}

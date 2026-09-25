@@ -94,13 +94,12 @@ setCurrentUrl(window.location.href);
         month: "long",
         year: "numeric",
         })
-     
+    
 
 
+    const url = `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${postData.category.slug}/${postData.slug}`;
 
-  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${postData.category.slug}/${postData.slug}`;
-
-  const schema = {
+    const schema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: postData.title,
@@ -112,7 +111,6 @@ setCurrentUrl(window.location.href);
         "@type": "Person",
         name: postData.author.name,
         url: urlForImage(postData.author.picture).height(1000).width(2000).url(),
-      
     },
     publisher: {
         "@type": "Organization",
@@ -253,7 +251,7 @@ setCurrentUrl(window.location.href);
                         />
                         
 
-                    <button onClick={handlePrint} className="flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105">
+                    <button onClick={() => handlePrint()} className="flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                     </svg>
