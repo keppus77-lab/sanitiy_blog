@@ -60,17 +60,17 @@ export default function HeaderSearch({ mobile }: { mobile?: string }) {
                     placeholder="Suchen..."
                     onChange={(e) => setQuery(e.target.value)}
                     className="
-                        w-full rounded-full border border-gray-300
-                        bg-white px-4 py-2 pr-10
+                        w-full rounded-full border border-gray-300 dark:border-slate-700
+                        bg-white dark:bg-slate-900 px-4 py-2 pr-10
                         text-sm outline-none
-                        focus:border-blue-500
+                        focus:border-green-600
                     "
                 />
         
 
                 <button id="closebutton"
                     onClick={() => setOpen(false)}
-                    className="absolute right-3 text-gray-400 hover:text-gray-700"
+                    className="absolute right-3 text-gray-400 dark:text-gray-600 hover:text-gray-700"
                     >
                 <FaTimes size={18} />
             </button>
@@ -84,6 +84,7 @@ export default function HeaderSearch({ mobile }: { mobile?: string }) {
             flex h-10 w-10 items-center justify-center
             rounded-full
             text-gray-700
+            dark:text-gray-300
             transition-colors
             hover:bg-gray-100
         "
@@ -94,14 +95,14 @@ export default function HeaderSearch({ mobile }: { mobile?: string }) {
     )}
     </div>
     {results.length > 0 && (
-            <div className={`text-sm text-gray-500d ropdown-menu absolute  mt-2 bg-white shadow-lg rounded-lg p-4 min-w-55 border border-gray-100 ${mobile ? "w-full z-99" : ""}`}>
+            <div className={`text-sm text-gray-500 dark:text-gray-500 dropdown-menu absolute  mt-2 bg-white dark:bg-slate-900 shadow-lg rounded-lg p-4 min-w-55 border border-gray-100 ${mobile ? "w-full z-99" : ""}`}>
             {results.map((item) => (
                 <a     href={`/blog/${item.category.slug}/${item.slug}`}
                 key={item._id}
                 className="font-semibold">
                     <h3> {item.title} </h3>
                     {item.excerpt && (
-                        <p className="mt-1 text-sm text-gray-600">
+                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
                         {item.excerpt}
                         </p>
                     )}
@@ -111,7 +112,7 @@ export default function HeaderSearch({ mobile }: { mobile?: string }) {
         )}
    
 
-        {loading && (<div className="text-sm text-gray-500d ropdown-menu absolute  mt-2 bg-white shadow-lg rounded-lg p-4 min-w-55 border border-gray-100">
+        {loading && (<div className="text-sm text-gray-500 dark:text-gray-500 dropdown-menu absolute  mt-2 bg-white dark:bg-slate-900 shadow-lg rounded-lg p-4 min-w-55 border border-gray-100">
             Suche läuft...
             </div>)}
     </div>

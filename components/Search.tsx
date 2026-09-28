@@ -55,7 +55,7 @@ type SearchResult = {
         />
 
         {loading && (
-            <p className="mt-4 text-sm text-gray-500">
+            <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
             Suche läuft...
             </p>
         )}
@@ -69,7 +69,7 @@ type SearchResult = {
                 className="font-semibold">
                     <h3> {item.title}</h3>
                     {item.excerpt && (
-                        <p className="mt-1 text-sm text-gray-600">
+                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
                         {item.excerpt}
                         </p>
                     )}
@@ -81,7 +81,7 @@ type SearchResult = {
         {!loading &&
             query.length > 1 &&
             results.length === 0 && (
-            <p className="mt-4 text-gray-500">
+            <p className="mt-4 text-gray-500 dark:text-gray-500">
                 Keine Treffer gefunden.
             </p>
             )}

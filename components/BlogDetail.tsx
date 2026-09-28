@@ -137,7 +137,10 @@ setCurrentUrl(window.location.href);
         }}
         />
 
-        <div className="min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50">
+        <div className="min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50 
+        dark:from-slate-950
+dark:via-slate-900
+dark:to-emerald-950">
         {/* Header/Navigation */}
         <Breadcrumb title={postData.title} slug={postData.slug} categorySlug={postData.category.slug} categoryTitle={postData.category.title}></Breadcrumb>
 
@@ -157,12 +160,12 @@ setCurrentUrl(window.location.href);
                 </div>
 
                 {/* Main Title */}
-                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 dark:text-gray-100">
                     {postData.title}
                 </h1>
 
                 {/* Subtitle/Lead */}
-                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8">
+                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8 dark:text-gray-400">
                     {postData.excerpt}
                     
                 </p>
@@ -175,8 +178,8 @@ setCurrentUrl(window.location.href);
                         <AuthorAvatar picture={postData.author.picture} name={postData.author.name} role={''} />  
                     </div>
                     <div>
-                        <p className="font-semibold text-gray-900">{postData.author.name}</p>
-                        <p className="text-sm text-gray-600">{postData.author.role}</p>
+                        <p className="font-semibold text-gray-900 dark:text-gray-100">{postData.author.name}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{postData.author.role}</p>
                     </div>
                     </div>
 
@@ -185,7 +188,7 @@ setCurrentUrl(window.location.href);
 
                     {/* Date & Reading Time */}
                     <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-2 text-gray-700">
+                    <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -195,9 +198,9 @@ setCurrentUrl(window.location.href);
                     </div>
 
                     {/* Divider */}
-                    <div className="hidden sm:block w-px h-12 bg-gray-300"></div>
+                    <div className="hidden sm:block w-px h-12 bg-gray-300 dark:bg-gray-700"></div>
                     <div className="flex flex-col gap-1">
-                        <div className="flex items-center gap-2 text-gray-700">
+                        <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -209,14 +212,14 @@ setCurrentUrl(window.location.href);
                     {/* Stats */}
                     {/*
                     <div className="hidden  gap-6">
-                    <div className="flex items-center gap-2 text-gray-700">
+                    <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
                         <span className="text-sm font-medium">2.4k Aufrufe</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-700">
+                    <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                         </svg>
@@ -234,7 +237,7 @@ setCurrentUrl(window.location.href);
                         items-center gap-2 px-5 py-3 rounded-lg font-medium transition-all hover:scale-105 ${
                         isBookmarked
                         ? 'bg-green-600 text-white shadow-lg shadow-green-600/30'
-                        : 'bg-white border-2 border-gray-300 text-gray-700 hover:border-green-600'
+                        : 'bg-white border-2 border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 dark:hover:border-green-600 dark:hover:text-green-600 dark:bg-slate-900'
                     }`}
                     >
                     <svg className="w-5 h-5" fill={isBookmarked ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
@@ -244,14 +247,14 @@ setCurrentUrl(window.location.href);
                     </button>
 
                     
-                    <SocialShareBar className="group flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105"
+                    <SocialShareBar className="group flex items-center gap-2 px-5 py-3 bg-white dark:bg-slate-600 border-2 border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105"
                             url={currentUrl}
                             title={postData.title}
                             description={postData.excerpt}
                         />
                         
-
-                    <button onClick={() => handlePrint()} className="flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105">
+ 
+                    <button onClick={() => handlePrint()} className="flex items-center gap-2 px-5 py-3 bg-white dark:bg-slate-600 border-2 border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:border-green-600  hover:text-green-600 transition-all hover:scale-105">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                     </svg>
@@ -293,7 +296,7 @@ setCurrentUrl(window.location.href);
                 {postData.tags?.map((item, index) => (
                 <Link href={`/tag/${item.slug}`}
                     key={item.slug}
-                    className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full" >#{item.title}</Link>
+                    className="px-3 py-1 bg-green-100 dark:bg-emerald-950 text-green-700 dark:text-emerald-400 text-sm font-medium rounded-full" >#{item.title}</Link>
                     ))}
                 
                 
@@ -305,7 +308,7 @@ setCurrentUrl(window.location.href);
 
                 {/* Article Preview/Intro */}
                 <div className="prose prose-lg max-w-none mt-2">
-                    <p className="text-lg text-gray-700 leading-relaxed mt-6">
+                    <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-6">
                     {postData.excerpt}
                     </p>
                     
@@ -314,12 +317,12 @@ setCurrentUrl(window.location.href);
                 {/* Continue Reading Divider */}
                 <div className="flex items-center gap-4 my-12">
                     <div className="flex-1 h-px bg-linear-to-r from-transparent via-green-300 to-transparent"></div>
-                    <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">Artikel lesen</span>
+                    <span className="text-sm font-semibold text-green-700 dark:text-emerald-400 uppercase tracking-wide">Artikel lesen</span>
                     <div className="flex-1 h-px bg-linear-to-r from-transparent via-green-300 to-transparent"></div>
                 </div>
 
                 {/* Placeholder for Article Content */}
-                <div id="content" className="prose prose-lg max-w-none">
+                <div id="content" className="prose prose-lg max-w-none  dark:text-gray-100">
 
   
                     {portableContent && (

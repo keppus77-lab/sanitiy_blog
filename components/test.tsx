@@ -96,7 +96,7 @@
        
 
         {/* Category Filter */}
-        <section className="bg-white border-b border-gray-200 sticky top-[73px] z-40 shadow-sm">
+        <section className="bg-white dark:bg-slate-900 border-b border-gray-200 sticky top-[73px] z-40 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex gap-3 py-4 overflow-x-auto scrollbar-hide">
                 {categories.map((cat) => (
@@ -106,7 +106,7 @@
                     className={`px-5 py-2 rounded-full font-medium whitespace-nowrap transition-all ${
                     activeCategory === cat.id
                         ? 'bg-green-600 text-white shadow-lg shadow-green-600/30'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        : 'bg-gray-100 text-gray-700 dark:text-gray-300 hover:bg-gray-200'
                     }`}
                 >
                     {cat.label}
@@ -122,7 +122,7 @@
             {filteredPosts.map((post) => (
                 <article
                 key={post.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
+                className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
                 >
                 {/* Image Placeholder */}
                 <div className="h-48 bg-linear-to-br from-green-600 to-emerald-700 flex items-center justify-center text-7xl">
@@ -133,25 +133,25 @@
                 <div className="p-6">
                     {/* Category Badge */}
                     <div className="mb-3">
-                    <span className="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                    <span className="inline-block px-3 py-1 bg-green-100 dark:bg-emerald-950 text-green-700 dark:text-emerald-400 text-xs font-semibold rounded-full">
                         {categories.find(c => c.id === post.category)?.label}
                     </span>
                     </div>
 
                     {/* Title */}
-                    <h2 className="text-xl font-bold text-gray-900 mb-3 leading-tight hover:text-green-700 cursor-pointer transition-colors">
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 leading-tight dark:hover:text-emerald-400 cursor-pointer transition-colors">
                     {post.title}
                     </h2>
 
                     {/* Excerpt */}
-                    <p className="text-gray-600 mb-4 leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                     {post.excerpt}
                     </p>
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
                     {post.tags.map((tag, idx) => (
-                        <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">
+                        <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-600 dark:text-gray-400 text-xs rounded">
                         #{tag}
                         </span>
                     ))}
@@ -164,11 +164,11 @@
                         {post.author.split(' ').map(n => n[0]).join('')}
                         </div>
                         <div>
-                        <p className="text-sm font-medium text-gray-900">{post.author}</p>
-                        <p className="text-xs text-gray-500">{post.date}</p>
+                        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{post.author}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-500">{post.date}</p>
                         </div>
                     </div>
-                    <span className="text-sm text-gray-500">{post.readTime}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-500">{post.readTime}</span>
                     </div>
                 </div>
                 </article>
@@ -177,7 +177,7 @@
 
             {/* Load More */}
             <div className="text-center mt-12">
-            <button className="px-8 py-3 bg-white border-2 border-green-600 text-green-700 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-all hover:shadow-lg">
+            <button className="px-8 py-3 bg-white dark:bg-slate-900 border-2 border-green-600 text-green-700 dark:text-emerald-400 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-all hover:shadow-lg">
                 Weitere Artikel laden
             </button>
             </div>
@@ -196,7 +196,7 @@
                 <input
                 type="email"
                 placeholder="deine@email.de"
-                className="flex-1 px-5 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                className="flex-1 px-5 py-3 rounded-lg text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-400"
                 />
                 <button className="px-6 py-3 bg-emerald-500 text-white rounded-lg font-semibold hover:bg-emerald-600 transition-all hover:shadow-lg">
                 Abonnieren

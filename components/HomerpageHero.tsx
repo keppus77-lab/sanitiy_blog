@@ -53,7 +53,7 @@ export default function HomepageHero(props) {
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
                     
-                    <Link href={`/${category?.slug}/${slug}`} className="px-8 py-4 bg-white text-gray-900 rounded-xl font-semibold hover:shadow-2xl transition-all hover:scale-105 flex items-center justify-center gap-2">
+                    <Link href={`/${category?.slug}/${slug}`} className="px-8 py-4 bg-white text-gray-900 dark:text-gray-100 rounded-xl font-semibold hover:shadow-2xl transition-all hover:scale-105 flex items-center justify-center gap-2">
                         <span>Artikel lesen</span>
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -140,8 +140,8 @@ export default function HomepageHero(props) {
                 
                 <div className="relative z-10">
                     <div className="text-5xl mb-4">{category.icon}</div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{category.title}</h3>
-                    <p className="text-sm text-gray-600">{category.count}</p>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{category.title}</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{category.count}</p>
                     <div className="mt-4 flex items-center gap-2 text-green-600 font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity">
                     <span>Entdecken</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

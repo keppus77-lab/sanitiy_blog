@@ -45,7 +45,7 @@ useEffect(() => {
 
     return (
         <section className="mt-16 border-t border-gray-200 pt-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
             Kommentare ({comments.length})
         </h2>
 
@@ -57,7 +57,7 @@ useEffect(() => {
             />
         ) : (
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8 text-center">
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
                 Melde dich an, um einen Kommentar zu schreiben
             </p>
             <a

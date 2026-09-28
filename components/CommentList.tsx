@@ -15,7 +15,7 @@ interface CommentListProps {
 export function CommentList({ comments, onCommentUpdated }: CommentListProps) {
   if (comments.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-gray-500 dark:text-gray-500">
         Noch keine Kommentare. Sei der Erste!
       </div>
     )
@@ -97,17 +97,17 @@ function CommentItem({
         <div className="flex-1">
           {/* Header */}
           <div className="flex items-center gap-2 mb-2">
-            <span className="font-semibold text-gray-900">
+            <span className="font-semibold text-gray-900 dark:text-gray-100">
               {comment.author.name}
             </span>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-gray-500 dark:text-gray-500">
               {formatDistanceToNow(new Date(comment.createdAt), { 
                 addSuffix: true,
                 locale: de 
               })}
             </span>
             {comment.edited && (
-              <span className="text-xs text-gray-400">(bearbeitet)</span>
+              <span className="text-xs text-gray-400 dark:text-gray-600">(bearbeitet)</span>
             )}
           </div>
 
@@ -117,7 +117,7 @@ function CommentItem({
               <textarea
                 value={editContent}
                 onChange={(e) => setEditContent(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg"
                 rows={3}
               />
               <div className="flex gap-2 mt-2">
@@ -129,14 +129,14 @@ function CommentItem({
                 </button>
                 <button
                   onClick={() => setIsEditing(false)}
-                  className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 rounded-lg"
                 >
                   Abbrechen
                 </button>
               </div>
             </div>
           ) : (
-            <p className="text-gray-700 mb-4 whitespace-pre-wrap">
+            <p className="text-gray-700 dark:text-gray-300 mb-4 whitespace-pre-wrap">
               {comment.content}
             </p>
           )}
@@ -146,7 +146,7 @@ function CommentItem({
             {session && !isEditing && (
               <button
                 onClick={() => setShowReplyForm(!showReplyForm)}
-                className="text-green-600 hover:text-green-700 font-medium"
+                className="text-green-600 dark:hover:text-emerald-400 font-medium"
               >
                 Antworten
               </button>
@@ -156,7 +156,7 @@ function CommentItem({
               <>
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="text-gray-600 hover:text-gray-700"
+                  className="text-gray-600 dark:text-gray-400 hover:text-gray-700"
                 >
                   Bearbeiten
                 </button>

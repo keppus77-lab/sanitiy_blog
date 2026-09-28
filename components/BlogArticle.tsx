@@ -24,7 +24,7 @@ export function BlogArticle({ children }: { children: React.ReactNode }) {
         }, [children])
 
     return (
-    <article className="prose prose-lg max-w-none">
+    <article className="prose prose-lg max-w-none dark:prose-invert">
         {children}
     </article>
     )

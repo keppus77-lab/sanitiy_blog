@@ -4,6 +4,7 @@
 @view-transition {navigation: auto;} 
 
 
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-accent-1: #fafafa;

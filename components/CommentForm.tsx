@@ -71,14 +71,14 @@ export function CommentForm({
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder={parentCommentId ? 'Antworten...' : 'Schreibe einen Kommentar...'}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+            className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
             rows={4}
             maxLength={1000}
             disabled={submitting}
           />
           
           <div className="flex items-center justify-between mt-3">
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-gray-500 dark:text-gray-500">
               {content.length}/1000 Zeichen
             </span>
             
@@ -87,7 +87,7 @@ export function CommentForm({
                 <button
                   type="button"
                   onClick={onCancel}
-                  className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   Abbrechen
                 </button>

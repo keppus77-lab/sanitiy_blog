@@ -58,7 +58,7 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
     
       <article
           key={postData._id}
-          className="card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100
+          className="card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100
           grid grid-rows-subgrid row-span-6 gap-0
           "
           >
@@ -73,20 +73,20 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
               {/* Category Badge */}
               <div className="mb-3 p-4">
                 {postData.category?.title &&
-              <span className="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">{postData.category.title}</span>}
+              <span className="inline-block px-3 py-1 bg-green-100 dark:bg-emerald-950 text-green-700 dark:text-emerald-400 text-xs font-semibold rounded-full">{postData.category.title}</span>}
               
               
               </div>
 
               {/* Title */}
-              <h2 className="px-4 text-xl font-bold text-gray-900 mb-3 leading-tight hover:text-green-700 cursor-pointer transition-colors">
+              <h2 className="px-4 text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 leading-tight dark:hover:text-emerald-400 cursor-pointer transition-colors">
               <a aria-label={postData.title} href={`/blog/${postData.category?.slug}/${postData.slug}`} >{postData.title}</a>
               </h2>
 
               {/* Excerpt 
-              <p className="text-gray-600 mb-4 leading-relaxed h-[75px]">*/}
+              <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed h-[75px]">*/}
               
-              <p className="p-4 mb-4 leading-relaxed h-75px bg-linear-to-b from-gray-600 via-gray-600 to-gray-600/80 text-gradient">
+              <p className="p-4 mb-4 leading-relaxed h-75px bg-linear-to-b from-gray-600 via-gray-600 to-gray-600/80   dark:from-gray-100 dark:via-gray-100 dark:to-gray-100/80 text-gradient dark:text-gray-100">
 
               {postData.excerpt}
               </p>
@@ -97,7 +97,7 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
               {postData.tags?.map((item, index) => (
                   <Link href={`/tag/${item.slug}`}
                     key={item.id}
-                  className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full" >#{item.title}</Link>
+                  className="px-3 py-1 bg-green-100 dark:bg-emerald-950 text-green-700 dark:text-emerald-400 text-sm font-medium rounded-full" >#{item.title}</Link>
                 ))}
               </div>
 
@@ -108,11 +108,11 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
                       {postData.author && <AuthorAvatar picture={postData.author.picture} role={postData.author.role} />}
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900"> {postData.author?.name}</p>
-                    <p className="text-xs text-gray-500">{formatted}</p>
+                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100"> {postData.author?.name}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{formatted}</p>
                   </div>
                   </div>
-                    <span className="text-sm text-gray-500">{readingTime} Min</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{readingTime} Min</span>
               </div>
           
       </article>

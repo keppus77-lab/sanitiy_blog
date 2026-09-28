@@ -39,14 +39,14 @@ export default function TableOfContents({ content, className = '' }: TableOfCont
 
   return (
     <nav className={`bg-linear-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 ${className}`}>
-      <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
         <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
         </svg>
         Inhaltsverzeichnis
       </h2>
       
-      <ol className="space-y-2 text-gray-700">
+      <ol className="space-y-2 text-gray-700 dark:text-gray-300">
         {toc.map((item, index) => (
           <li 
             key={item.id}
@@ -57,7 +57,7 @@ export default function TableOfContents({ content, className = '' }: TableOfCont
             </span>
             <a 
               href={`#${item.id}`}
-              className="hover:text-green-700 transition-colors hover:underline"
+              className="dark:hover:text-emerald-400 transition-colors hover:underline"
             >
               {item.text}
             </a>

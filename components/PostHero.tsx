@@ -27,12 +27,12 @@ export default function BlogPostHero() {
             </div>
 
             {/* Main Title */}
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 leading-tight mb-6">
                 Moderne Harvester-Technologie im Einsatz
             </h1>
 
             {/* Subtitle/Lead */}
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8">
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-600 leading-relaxed mb-8">
                 Wie digitale Steuerungssysteme die Holzernte revolutionieren und gleichzeitig 
                 den Wald schonen – ein Blick in die Zukunft der Forstwirtschaft.
             </p>
@@ -45,8 +45,8 @@ export default function BlogPostHero() {
                     MK
                 </div>
                 <div>
-                    <p className="font-semibold text-gray-900">Martin Keppler</p>
-                    <p className="text-sm text-gray-600">Forstexperte & Autor</p>
+                    <p className="font-semibold text-gray-900 dark:text-gray-100">Martin Keppler</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Forstexperte & Autor</p>
                 </div>
                 </div>
 
@@ -55,13 +55,13 @@ export default function BlogPostHero() {
 
                 {/* Date & Reading Time */}
                 <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2 text-gray-700">
+                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     <span className="text-sm font-medium">10. Juli 2026</span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-700">
+                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -74,14 +74,14 @@ export default function BlogPostHero() {
 
                 {/* Stats */}
                 <div className="flex gap-6">
-                <div className="flex items-center gap-2 text-gray-700">
+                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
                     <span className="text-sm font-medium">2.4k Aufrufe</span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-700">
+                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
@@ -97,7 +97,7 @@ export default function BlogPostHero() {
                 className={`flex items-center gap-2 px-5 py-3 rounded-lg font-medium transition-all hover:scale-105 ${
                     isBookmarked
                     ? 'bg-green-600 text-white shadow-lg shadow-green-600/30'
-                    : 'bg-white border-2 border-gray-300 text-gray-700 hover:border-green-600'
+                    : 'bg-white dark:bg-slate-900 border-2 border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 hover:border-green-600'
                 }`}
                 >
                 <svg className="w-5 h-5" fill={isBookmarked ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
@@ -106,15 +106,15 @@ export default function BlogPostHero() {
                 {isBookmarked ? 'Gespeichert' : 'Speichern'}
                 </button>
 
-                <button className="flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105">
+                <button className="flex items-center gap-2 px-5 py-3 bg-white dark:bg-slate-900 border-2 border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
                 </svg>
                 Teilen
                 </button>
 
-                <button className="flex items-center gap-2 px-5 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button className="flex items-center gap-2 px-5 py-3 bg-white dark:bg-slate-900 border-2 border-gray-300 dark:border-slate-700  text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:border-green-600 transition-all hover:scale-105">
+                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                 </svg>
                 Drucken
@@ -146,54 +146,54 @@ export default function BlogPostHero() {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-8">
-                <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">#Harvester</span>
-                <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">#Digitalisierung</span>
-                <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">#Effizienz</span>
-                <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">#Nachhaltigkeit</span>
-                <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">#Forsttechnik</span>
+                <span className="px-3 py-1 bg-green-100 dark:bg-emerald-950 text-green-700 dark:text-emerald-400 text-sm font-medium rounded-full">#Harvester</span>
+                <span className="px-3 py-1 bg-green-100 dark:bg-emerald-950  text-green-700 dark:text-emerald-400 text-sm font-medium rounded-full">#Digitalisierung</span>
+                <span className="px-3 py-1 bg-green-100 dark:bg-emerald-950 text-green-700 dark:text-emerald-400 text-sm font-medium rounded-full">#Effizienz</span>
+                <span className="px-3 py-1 bg-green-100 dark:bg-emerald-950 text-green-700 dark:text-emerald-400 text-sm font-medium rounded-full">#Nachhaltigkeit</span>
+                <span className="px-3 py-1 bg-green-100 dark:bg-emerald-950 text-green-700 dark:text-emerald-400 text-sm font-medium rounded-full">#Forsttechnik</span>
             </div>
 
             {/* Table of Contents */}
             <div className="bg-linear-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 mb-10">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
                 <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                 </svg>
                 Inhaltsverzeichnis
                 </h2>
-                <ol className="space-y-2 text-gray-700">
+                <ol className="space-y-2 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-2">
                     <span className="font-semibold text-green-600 mt-0.5">1.</span>
-                    <a href="#" className="hover:text-green-700 transition-colors">Was ist ein Harvester und wie funktioniert er?</a>
+                    <a href="#" className="dark:hover:text-emerald-400 transition-colors">Was ist ein Harvester und wie funktioniert er?</a>
                 </li>
                 <li className="flex items-start gap-2">
                     <span className="font-semibold text-green-600 mt-0.5">2.</span>
-                    <a href="#" className="hover:text-green-700 transition-colors">Digitale Steuerungssysteme im Detail</a>
+                    <a href="#" className="dark:hover:text-emerald-400 transition-colors">Digitale Steuerungssysteme im Detail</a>
                 </li>
                 <li className="flex items-start gap-2">
                     <span className="font-semibold text-green-600 mt-0.5">3.</span>
-                    <a href="#" className="hover:text-green-700 transition-colors">Vorteile für Umwelt und Effizienz</a>
+                    <a href="#" className="dark:hover:text-emerald-400 transition-colors">Vorteile für Umwelt und Effizienz</a>
                 </li>
                 <li className="flex items-start gap-2">
                     <span className="font-semibold text-green-600 mt-0.5">4.</span>
-                    <a href="#" className="hover:text-green-700 transition-colors">Praxisbeispiele aus deutschen Wäldern</a>
+                    <a href="#" className="dark:hover:text-emerald-400 transition-colors">Praxisbeispiele aus deutschen Wäldern</a>
                 </li>
                 <li className="flex items-start gap-2">
                     <span className="font-semibold text-green-600 mt-0.5">5.</span>
-                    <a href="#" className="hover:text-green-700 transition-colors">Zukunftsperspektiven und Innovationen</a>
+                    <a href="#" className="dark:hover:text-emerald-400 transition-colors">Zukunftsperspektiven und Innovationen</a>
                 </li>
                 </ol>
             </div>
 
             {/* Article Preview/Intro */}
             <div className="prose prose-lg max-w-none">
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                 Die moderne Forstwirtschaft steht vor der Herausforderung, Effizienz und Nachhaltigkeit 
                 miteinander zu vereinen. <strong>Harvester mit digitalen Steuerungssystemen</strong> bieten 
                 hier eine zukunftsweisende Lösung, die nicht nur die Produktivität steigert, sondern auch 
                 aktiv zum Waldschutz beiträgt.
                 </p>
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                 In diesem ausführlichen Artikel erfährst du, wie GPS-gesteuerte Präzision, automatische 
                 Qualitätsmessung und intelligente Routenplanung die Holzernte revolutionieren – und warum 
                 diese Technologie gerade für mittelständische Forstbetriebe interessant ist.
@@ -203,17 +203,17 @@ export default function BlogPostHero() {
             {/* Continue Reading Divider */}
             <div className="flex items-center gap-4 my-12">
                 <div className="flex-1 h-px bg-linear-to-r from-transparent via-green-300 to-transparent"></div>
-                <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">Artikel lesen</span>
+                <span className="text-sm font-semibold text-green-700 dark:text-emerald-400 uppercase tracking-wide">Artikel lesen</span>
                 <div className="flex-1 h-px bg-linear-to-r from-transparent via-green-300 to-transparent"></div>
             </div>
 
             {/* Placeholder for Article Content */}
-            <div className="bg-white border-2 border-dashed border-gray-300 rounded-xl p-12 text-center">
-                <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-white dark:bg-slate-900 border-2 border-dashed border-gray-300 rounded-xl p-12 text-center">
+                <svg className="w-16 h-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <p className="text-gray-600 text-lg mb-2">Hier folgt der Hauptinhalt des Artikels</p>
-                <p className="text-gray-500 text-sm">Dieser Hero-Bereich kann mit dem vollständigen Artikel-Content kombiniert werden</p>
+                <p className="text-gray-600 dark:text-gray-400 text-lg mb-2">Hier folgt der Hauptinhalt des Artikels</p>
+                <p className="text-gray-500 dark:text-gray-500 text-sm">Dieser Hero-Bereich kann mit dem vollständigen Artikel-Content kombiniert werden</p>
             </div>
             </div>
         </article>

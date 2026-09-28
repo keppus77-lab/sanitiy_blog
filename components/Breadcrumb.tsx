@@ -44,14 +44,14 @@ export default function Breadcrumb(props: {
 
 
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-            <nav className="flex items-center gap-2 text-sm text-gray-600 mb-8">
+            <nav className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-8">
                 
-                <Link href="/" className="hover:text-green-700 transition-colors">Home</Link>
+                <Link href="/" className="dark:hover:text-emerald-400 transition-colors">Home</Link>
                 <span>/</span>
                 
-                <Link href={`/blog/${categorySlug}`} className="hover:text-green-700 transition-colors">{categoryTitle}</Link>
+                <Link href={`/blog/${categorySlug}`} className="dark:hover:text-emerald-400 transition-colors">{categoryTitle}</Link>
                 <span>/</span>
-                <div className="hover:text-green-700 transition-colors">{title}</div>
+                <div className="dark:hover:text-emerald-400 transition-colors">{title}</div>
                 
             </nav>
     </div>

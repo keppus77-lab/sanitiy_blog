@@ -46,7 +46,7 @@ export default function Page({page}: PageProps) {
                 h3: ({children}) => <h3 className="text-xl font-bold mt-4 mb-2">{children}</h3>,
                 normal: ({children}) => <p className="mb-4">{children}</p>,
                 blockquote: ({children}) => (
-                  <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">
+                  <blockquote className="border-l-4 border-gray-300 dark:border-slate-700 pl-4 italic my-4">
                     {children}
                   </blockquote>
                 ),

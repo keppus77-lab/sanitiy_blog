@@ -35,6 +35,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-icons": "^5.7.0",
+    "react-toggle-dark-mode": "^2.0.0",
     "sanity": "4.10.3",
     "sanity-plugin-asset-source-unsplash": "4.0.1",
     "sanity-plugin-iframe-pane": "4.0.0",

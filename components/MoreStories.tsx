@@ -7,7 +7,7 @@ export default function MoreStories({ posts, title, description }: { posts: Post
   
   return (
     <>
-       <div className='min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50 z-49 relative'>
+       <div className='min-h-screen bg-linear-to-br from-slate-50 via-green-50 to-emerald-50 z-49 dark:from-slate-800 dark:via-slate-700 dark:to-slate-700 relative'>
       
        <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             
