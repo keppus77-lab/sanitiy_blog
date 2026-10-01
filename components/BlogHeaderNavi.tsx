@@ -88,7 +88,8 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
                 <nav className="hidden md:flex items-center gap-8">
 
                     <HeaderSearch/>
-                    <DarkmodeToggle/>
+                    <div><div className="relative flex items-center"><DarkmodeToggle/></div></div>
+                    
                     {nav.headerLinks.map((link, index) => {
                      // Kein Link bei linkType === 'text'
                         if (link.linkType === 'text') {
@@ -186,9 +187,13 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
 
             </div>     
 
-            <div className="group">
+            <div className="group ">
+                
+               <div className="absolute  w-full left-0 max-h-0 md:hidden border-t border-gray-200 overflow-hidden opacity-0 transition-all duration-300 peer-checked:max-h-1000 peer-checked:opacity-100"><DarkmodeToggle/></div>    
+               
+               <div className="md:hidden absolute right-20 top-8 flex items-center"><DarkmodeToggle/></div>
                 <input type="checkbox" className="peer hidden " id="cb-menu"></input>
-                <button className="md:hidden p-2 text-gray-700 dark:text-gray-300 absolute right-2 top-7.25 hover:bg-gray-100  dark:hover:bg-gray-800 rounded-md">
+                <button className="absolute right-2 top-7.25 md:hidden p-2 text-gray-700 dark:text-gray-300   hover:bg-gray-100  dark:hover:bg-gray-800 rounded-md">
                     <label htmlFor="cb-menu" >
 
                         <svg id="hamburgerIcon" className="w-6 h-6 block group-has-checked:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -204,11 +209,15 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
 
 
         
+
+
+        
         <nav id="mobileMenu" className="bg-white dark:bg-gray-800 shadow-md absolute w-full left-0 max-h-0 md:hidden border-t border-gray-200 overflow-hidden opacity-0 transition-all duration-300 peer-checked:max-h-1000 peer-checked:opacity-100">
+            
         <div className="py-4 space-y-1">
 
-<HeaderSearch mobile="true" />
-        {nav.headerLinks.map((link, index) => {
+            <HeaderSearch mobile="true" />
+                    {nav.headerLinks.map((link, index) => {
                      // Kein Link bei linkType === 'text'
                         if (link.linkType === 'text') {
                             return (

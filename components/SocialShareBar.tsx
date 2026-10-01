@@ -94,7 +94,7 @@
             
             {/* Share Bar */}
             <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 z-50 animate-slideUp">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-3 border border-gray-200 dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-3 border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-2">
                     {/* Facebook */}
                     <button
@@ -179,7 +179,7 @@
                 
                 {/* Arrow */}
                 <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px">
-                <div className="w-3 h-3 bg-white dark:bg-gray-800 border-r border-b border-gray-200 dark:border-gray-700 rotate-45" />
+                <div className="w-3 h-3 bg-white dark:bg-gray-900 border-r border-b border-gray-200 dark:border-gray-700 rotate-45" />
                 </div>
             </div>
             </>

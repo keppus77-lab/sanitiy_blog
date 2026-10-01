@@ -29,7 +29,7 @@ document.documentElement.classList.remove("dark");
     };
 
     return (
-        <div><div className="relative flex items-center"><div 
+        <div 
         style={{
                      
             transition: '0.2s background',
@@ -41,6 +41,6 @@ document.documentElement.classList.remove("dark");
         checked={isDarkMode}
         onChange={toggleDarkMode}
         size={20}
-        /></div></div></div>
+        /></div>
     )
 }

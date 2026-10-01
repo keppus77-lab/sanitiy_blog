@@ -212,7 +212,7 @@ export default function AuroraHero() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed max-w-2xl">
+          <p className="text-xl md:text-2xl text-gray-300 dark:text-gray-700 mb-8 leading-relaxed max-w-2xl">
             Entdecke die Zukunft der Forstwirtschaft – wo Tradition auf Innovation trifft. 
             Neueste Techniken, nachhaltige Praktiken und Expertenwissen.
           </p>
@@ -235,7 +235,7 @@ export default function AuroraHero() {
 
           {/* Subtle accent line */}
           <div className="mt-12 pt-8 border-t border-white/10">
-            <p className="text-sm text-gray-400 flex items-center gap-2">
+            <p className="text-sm text-gray-400 dark:text-gray-600 flex items-center gap-2">
               <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
               Seit 2026 – Professionelle Waldarbeiten in Franken
             </p>
