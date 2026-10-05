@@ -73,8 +73,7 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
                 <a href="/" className="flex items-center gap-3">
                 <div className="w-15 h-15 rounded-lg flex items-center ">
                     
-                
-                    
+  
                     <img src={urlForImage(nav.logo).height(96).width(96).fit('crop').url()}  className="rounded-full" alt="waldarbeit Logo" />
                 </div>
                 <div>
@@ -85,17 +84,17 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
                 
 
                 {/* Navigation */}
-                <nav className="hidden md:flex items-center gap-8">
+                <nav className="flex items-center gap-8">
 
-                    <HeaderSearch/>
-                    <div><div className="relative flex items-center"><DarkmodeToggle/></div></div>
+                    <span className="hidden md:block"><HeaderSearch/></span>
+                    <div><div className="relative flex items-center right-12 top-[2px] md:right-0 md:top-0"><DarkmodeToggle/></div></div>
                     
                     {nav.headerLinks.map((link, index) => {
                      // Kein Link bei linkType === 'text'
                         if (link.linkType === 'text') {
                             return (
                                 
-                                <span key={index} className="text-gray-700 dark:text-gray-300 dark:hover:text-emerald-400 font-medium transition-colors">{link.title}</span>
+                                <span key={index} className="text-gray-700 dark:text-gray-300 dark:hover:text-emerald-400 font-medium transition-colors hidden md:block">{link.title}</span>
                                 
                             )
                         }
@@ -108,7 +107,7 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
                                 key={index}
                                 target={link.openInNewTab ? '_blank' : '_self'}
                                 rel={link.openInNewTab ? 'noopener noreferrer' : undefined}
-                                className="text-gray-700 dark:text-gray-300 dark:hover:text-emerald-400 font-medium transition-colors"
+                                className="text-gray-700 dark:text-gray-300 dark:hover:text-emerald-400 font-medium transition-colors hidden md:block"
                             >
                                 {link.title}
                             </a>
@@ -117,7 +116,7 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
                         }
                         if (link.linkType === 'category') {
                             return (
-                                <div key={index} className="group relative">
+                                <div key={index} className="group relative hidden md:block">
                                         <button className="px-4 py-2 text-gray-700 dark:text-gray-300 dark:hover:text-emerald-400 dark:hover:bg-slate-800 rounded-md transition-colors font-medium flex items-center gap-1">
                                         {link.title}
                                         <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,7 +144,7 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
 
                         if (link.linkType === 'tags') {
                             return (
-                                <div key={index} className="group relative">
+                                <div key={index} className="group relative hidden md:block">
                                         <button className="px-4 py-2 text-gray-700 dark:text-gray-300 dark:hover:text-emerald-400 dark:hover:bg-slate-800 rounded-md transition-colors font-medium flex items-center gap-1">
                                         {link.title}
                                         <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -173,7 +172,7 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
                             <a
                             key={index}
                             href={link.url}                            
-                            className="text-gray-700 dark:text-gray-300 dark:hover:text-emerald-400 font-medium transition-colors"
+                            className="text-gray-700 dark:text-gray-300 dark:hover:text-emerald-400 font-medium transition-colors hidden md:block"
                             >
                             {link.title}
                             </a>
@@ -191,7 +190,7 @@ ${visible ? "translate-y-0" : "-translate-y-full"}
                 
                <div className="absolute  w-full left-0 max-h-0 md:hidden border-t border-gray-200 overflow-hidden opacity-0 transition-all duration-300 peer-checked:max-h-1000 peer-checked:opacity-100"><DarkmodeToggle/></div>    
                
-               <div className="md:hidden absolute right-20 top-8 flex items-center"><DarkmodeToggle/></div>
+               
                 <input type="checkbox" className="peer hidden " id="cb-menu"></input>
                 <button className="absolute right-2 top-7.25 md:hidden p-2 text-gray-700 dark:text-gray-300   hover:bg-gray-100  dark:hover:bg-gray-800 rounded-md">
                     <label htmlFor="cb-menu" >

@@ -2,6 +2,8 @@ import '../tailwind.css'
 
 import { VisualEditing } from '@sanity/visual-editing/next-pages-router'
 import { AppProps } from 'next/app'
+
+
 import dynamic from 'next/dynamic'
 
 
@@ -40,8 +42,12 @@ export  function App_({
 }
 
 export default function App({
-  Component,
-  pageProps,
-}: AppProps<SharedPageProps>) {
-  return <Component {...pageProps} />
+Component,
+pageProps,
+}: AppProps) {
+return (
+  <>
+    <Component {...pageProps} />
+  </>
+)
 }
