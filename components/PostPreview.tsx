@@ -96,7 +96,7 @@ export default function PostPreview(prpos: { postData: Post; category: string  }
                 
               {postData.tags?.map((item, index) => (
                   <Link href={`/tag/${item.slug}`}
-                    key={item.id}
+                    key={index}
                   className="px-3 py-1 bg-green-100 dark:bg-emerald-950 text-green-700 dark:text-emerald-400 text-sm font-medium rounded-full" >#{item.title}</Link>
                 ))}
               </div>

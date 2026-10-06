@@ -14,8 +14,11 @@ export default function CategoryPager(
     const { actpage, totalPages, categorySlug } = props
     return (
 
-        <div className="bg-linear-to-br from-slate-50 via-green-50 to-emerald-50 ">
-         <section className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  bg-linear-to-br from-slate-50 via-green-50 to-emerald-50 pb-10 '>
+
+
+
+        <div className="bg-emerald-50 dark:bg-slate-700 ">
+         <section className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  pb-10'>
       
       
       
@@ -27,7 +30,7 @@ export default function CategoryPager(
             Zurück
             </Link>
 
-            <span className="text-sm text-zinc-600">
+            <span className="text-sm text-zinc-600 dark:text-gray-100">
             Seite {actpage} von {totalPages}
             </span>
 

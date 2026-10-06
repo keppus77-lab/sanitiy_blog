@@ -1,13 +1,8 @@
 
-import AuthorAvatar from "./AuthorAvatar";
-
-
-
-import { readToken } from 'lib/sanity.api'
 import { SiteSetting } from "lib/sanity.queries";
 
 import { urlForImage } from 'lib/sanity.image'
-import Search from "./Search";
+
 import HeaderSearch from "./HeaderSearch" ;
 import DarkmodeToggle from "./DarkmodeToggle";
 import { useEffect, useState } from "react";

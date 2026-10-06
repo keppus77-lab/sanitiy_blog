@@ -20,10 +20,10 @@ export default function IndexPageHead({ settings }: IndexPageHeadProps) {
     <Head>
       <title>{stegaClean(title)}</title>
       <meta
-key="viewport"
-name="viewport"
-content="width=device-width,initial-scale=1.0"
-/>
+        key="viewport"
+        name="viewport"
+        content="width=device-width,initial-scale=1.0"
+      />
       <BlogMeta />
       <meta
         key="description"
