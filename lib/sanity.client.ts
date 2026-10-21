@@ -4,7 +4,7 @@ import {
   projectId,
   studioUrl,
   useCdn,
-} from 'lib/sanity.api'
+} from './sanity.api'
 
 
 
@@ -16,7 +16,7 @@ export function getClient(preview?: {
   perspective: PreviewData
 }): SanityClient {
   const client = createClient({
-    projectId,
+    projectId: 'nv63bt3c',
     dataset,
     apiVersion,
     useCdn,
@@ -39,9 +39,10 @@ export function getClient(preview?: {
   return client
 }
 
+
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  projectId: 'nv63bt3c',
+  dataset,
   apiVersion: '2024-01-01',
   useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN,

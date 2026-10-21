@@ -9,35 +9,35 @@ import {
   dataset,
   PREVIEW_MODE_ROUTE,
   projectId,
-} from 'lib/sanity.api'
-import { locate } from 'plugins/locate'
-import { previewDocumentNode } from 'plugins/previewPane'
-import { settingsPlugin, settingsStructure } from 'plugins/settings'
+} from './lib/sanity.api'
+import { locate } from './plugins/locate'
+import { previewDocumentNode } from './plugins/previewPane/index'
+import { settingsPlugin, settingsStructure } from './plugins/settings'
 import { defineConfig } from 'sanity'
 import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
-import authorType from 'schemas/author'
-import postType from 'schemas/post'
-import categoryType from 'schemas/category'
-import tagsType from 'schemas/tags'
-import settingsType from 'schemas/settings'
-import naviType from 'schemas/navi'
-import pageType from 'schemas/page'
+import authorType from './schemas/author'
+import postType from './schemas/post'
+import categoryType from './schemas/category'
+import tagsType from './schemas/tags'
+import settingsType from './schemas/settings'
+import naviType from './schemas/navi'
+import pageType from './schemas/page'
 
 
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
 
+
 export default defineConfig({
   basePath: '/studio',
   projectId,
-  dataset,
+  dataset, 
   title,
   schema: {
     // If you want more content types, you can add them to this array
-
     types: [categoryType, authorType, postType, tagsType, settingsType, naviType, pageType ],
   },
   plugins: [
@@ -58,5 +58,8 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     process.env.NODE_ENV !== 'production' &&
       visionTool({ defaultApiVersion: apiVersion }),
-  ],
+
+  ]
 })
+
+

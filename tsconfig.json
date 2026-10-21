@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "paths": {
+      "schemas/*": ["schemas/*"],
+      "plugins/*": ["plugins/*"],
+      "lib/*": ["lib/*"]
+    },
     "target": "ES2017",
     "lib": [
       "dom",

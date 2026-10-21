@@ -4,11 +4,11 @@
 // It's part of the Studio's “Structure Builder API” and is documented here:
 // https://www.sanity.io/docs/structure-builder-reference
 
-import { PREVIEW_MODE_ROUTE } from 'lib/sanity.api'
+import { PREVIEW_MODE_ROUTE } from '../../lib/sanity.api'
 import type { DefaultDocumentNodeResolver } from 'sanity/structure'
 import { Iframe, IframeOptions } from 'sanity-plugin-iframe-pane'
-import authorType from 'schemas/author'
-import postType from 'schemas/post'
+import authorType from '../../schemas/author'
+import postType from '../../schemas/post'
 
 import AuthorAvatarPreviewPane from './AuthorAvatarPreviewPane'
 

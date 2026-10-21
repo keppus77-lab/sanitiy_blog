@@ -9,8 +9,6 @@ import { useEffect, useState } from "react";
 
 
 
-
-
 interface HeaderProps {
     nav: SiteSetting
     cats?: any[]

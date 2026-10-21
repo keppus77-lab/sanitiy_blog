@@ -3,7 +3,7 @@ import { MdOutlineGrid3X3 } from 'react-icons/md'
 import { type Settings, settingsQuery, type Post, indexQuery, postSlugsQuery, postBySlugQuery, postAndMoreStoriesQuery, categoriesQuery, tagsQuery, headerLinks } from 'lib/sanity.queries'
 import type { PreviewData } from 'next'
 import { type SanityClient, createClient } from 'next-sanity'
-import { apiVersion, dataset, projectId, studioUrl, useCdn } from 'lib/sanity.api'
+import { apiVersion, dataset, projectId, studioUrl, useCdn } from '../lib/sanity.api'
 
 // leave validation untyped so Sanity's validation builder types are inferred
 
@@ -68,12 +68,10 @@ export function getClient(preview?: {
 
 
 
-
-
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
-  apiVersion: '2024-01-01',
+  projectId,
+  dataset,
+  apiVersion,
   useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN,
 })

@@ -18,6 +18,7 @@ node_modules/
 /build
 /studio/dist
 /public/studio/static
+/dist
 
 # misc
 .DS_Store
