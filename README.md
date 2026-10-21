@@ -150,3 +150,4 @@ Go to the serverless function code in `/pages/api/revalidate.ts`. In the code co
 [vercel-github]: https://github.com/vercel/next.js/discussions
 [app-dir]: https://beta.nextjs.org/docs/routing/fundamentals#the-app-directory
 [presentation]: https://www.sanity.io/docs/presentation
+# Klaus-Waldarbeit
